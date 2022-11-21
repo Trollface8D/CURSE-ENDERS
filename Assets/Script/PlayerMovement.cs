@@ -22,6 +22,8 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //ignore colision for enemy
+        Physics2D.IgnoreLayerCollision(9,10);
 
         horizontal = Input.GetAxisRaw("Horizontal");
 
@@ -55,17 +57,17 @@ public class PlayerMovement : MonoBehaviour
     {
         return Physics2D.OverlapCircle(groundCheck.position, 0.2f, groundLayer);
     }
-    private bool IsWall()
-    {
-        if (Physics2D.OverlapCircle(LeftWallCheck.position, 0.2f, groundLayer) || Physics2D.OverlapCircle(RightWallCheck.position, 0.2f, groundLayer))
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
-    }
+    //private bool IsWall()
+    //{
+    //    if (Physics2D.OverlapCircle(LeftWallCheck.position, 0.2f, groundLayer) || Physics2D.OverlapCircle(RightWallCheck.position, 0.2f, groundLayer))
+    //    {
+    //        return true;
+    //    }
+    //    else
+    //    {
+    //        return false;
+    //    }
+    //}
 
     private void FixedUpdate()
     {

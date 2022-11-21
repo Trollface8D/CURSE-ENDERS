@@ -2,48 +2,43 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerCombat : MonoBehaviour
+public class EnemyCombat : MonoBehaviour
 {
     public Transform attackpoint;
-    public LayerMask enemyLayers;
+    public LayerMask playerLayer;
 
-    public int attackDamage = 40;
-    public float attackRange = 4f;
+    public int attackDamage = 10;
+    public float attackRange = 0.2f;
 
     public float attackRate = 2f;
     private float nextAttackTime = 0f;
-
-    Animator m_Animator;
-    bool m_attack;
 
 
     // Update is called once per frame
     void Update()
     {
-        if(Time.time >= nextAttackTime)
+        if (Time.time >= nextAttackTime)
         {
-            if (Input.GetButtonDown("Fire1"))
+            if (Physics2D.OverlapCircle(attackpoint.position, attackRange, playerLayer))
             {
-                Attack();
-                //m_Animator.SetBool ("attack", true);
-                //m_Animator.SetBool ("attack", false);
+                AttackPlayer();
                 nextAttackTime = Time.time + 1f / attackRate;
             }
         }
+
     }
-    void Attack()
+    void AttackPlayer() 
     {
-        Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackpoint.position, attackRange, enemyLayers);
-        foreach(Collider2D enemy in hitEnemies)
+        Collider2D[] hitPlayer = Physics2D.OverlapCircleAll(attackpoint.position, attackRange, playerLayer);
+        foreach (Collider2D player in hitPlayer)
         {
-            enemy.GetComponent<EnemyStat>().TakeDamage(attackDamage);
+            player.GetComponent<PlayerStat>().TakeDamage1(attackDamage);
             //Debug.Log("Hit :" + enemy.GetComponent<EnemyStat>().name + " " + enemy.GetComponent<EnemyStat>().currentHealth);
         }
     }
-
     private void OnDrawGizmosSelected()
     {
-        if(attackpoint == null)
+        if (attackpoint == null)
         {
             return;
         }

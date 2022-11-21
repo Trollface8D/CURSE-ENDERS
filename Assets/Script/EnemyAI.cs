@@ -6,14 +6,12 @@ public class EnemyAI : MonoBehaviour
 {
     public float startspeed = 20f;
     public float chasespeed = 40f;
-    public float walkSpeed = 20f;
+    private float walkSpeed = 20f;
     [HideInInspector]
 
     public bool mustpatrol;
 
     public Rigidbody2D rb;
-
-    private float direction = 1f;
 
     public Transform groundCheckPos;
     public Transform WallCheck;
@@ -25,6 +23,7 @@ public class EnemyAI : MonoBehaviour
 
     public float filprange = 0.3f;
 
+    public float nextFreezetime = 0f;
     // Start is called before the first frame update
     void Start()
     {
@@ -45,15 +44,15 @@ public class EnemyAI : MonoBehaviour
         {
             
         }
-        else if (!IsPlayer())
+        else if (!IsPlayerinrange())
         {
             //AI Patrol player
             if (IsWall() || IsFilp())
             {
-                flip();
+                Flip();
             }
             //
-            if (walkSpeed > 0f)
+            if (walkSpeed >= 0f)
             {
                 walkSpeed = startspeed;
             }
@@ -62,15 +61,16 @@ public class EnemyAI : MonoBehaviour
                 walkSpeed = -startspeed;
             }
         }
-        else if (IsPlayer())
+        else if (IsPlayerinrange())
         {
             //Debug.Log("Hitting");
+
             if (walkSpeed > 0f)
             {
                 walkSpeed = chasespeed;
                 if ((Player.position.x - Enemy.position.x) < 0)
                 {
-                    flip();
+                    Flip();
                 }
                 
             }
@@ -79,18 +79,18 @@ public class EnemyAI : MonoBehaviour
                 walkSpeed = -chasespeed;
                 if ((Player.position.x - Enemy.position.x) > 0)
                 {
-                    flip();
+                    Flip();
                 }
             }
-            if (IsWall() || IsFilp())
-            {
-                flip();
-            }
+            //if (IsWall() || IsFilp())
+            //{
+            //    Flip();
+            //}
         }
               
     }
     //end follow player
-    void flip()
+    void Flip()
     {
         mustpatrol = false;
         transform.localScale = new Vector2(transform.localScale.x * -1, transform.localScale.y);
@@ -107,7 +107,7 @@ public class EnemyAI : MonoBehaviour
     {
         return !Physics2D.OverlapCircle(groundCheckPos.position, 0.2f, groundlayer);
     }
-    private bool IsPlayer()
+    private bool IsPlayerinrange()
     {
         return Physics2D.OverlapBox(new Vector2(Enemy.position.x, Enemy.position.y + 0.625f), new Vector2(20f,2f),0, Playerlayer);
         //return Physics2D.OverlapCircle(Enemy.position, 3f, Playerlayer);
@@ -121,5 +121,15 @@ public class EnemyAI : MonoBehaviour
             return;
         }
         Gizmos.DrawWireCube(enemypos, new Vector2(20f, 2f));
+    }
+    public void Freeze(float duration)
+    {
+        float temp = walkSpeed;
+        float current = Time.time;
+        walkSpeed = 0;
+        if (Time.time >= current + duration)
+        {
+            walkSpeed = temp;
+        }
     }
 }
