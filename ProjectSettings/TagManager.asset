@@ -44,8 +44,20 @@ TagManager:
   - name: Background
     uniqueID: 1471819733
     locked: 0
+  - name: house1
+    uniqueID: 4255770147
+    locked: 0
+  - name: House2 etc
+    uniqueID: 4056875131
+    locked: 0
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Ground
+    uniqueID: 2217471019
+    locked: 0
+  - name: wagon
+    uniqueID: 409716957
     locked: 0
   - name: Living
     uniqueID: 1134874221
