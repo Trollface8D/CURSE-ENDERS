@@ -109,7 +109,17 @@ public class EnemyAI : MonoBehaviour
     }
     private bool IsPlayer()
     {
-        return Physics2D.OverlapBox(new Vector2(Enemy.position.x, Enemy.position.y + 1f), new Vector2(20f,2f),0, Playerlayer);
+        return Physics2D.OverlapBox(new Vector2(Enemy.position.x, Enemy.position.y + 0.625f), new Vector2(20f,2f),0, Playerlayer);
         //return Physics2D.OverlapCircle(Enemy.position, 3f, Playerlayer);
+    }
+    private void OnDrawGizmosSelected()
+    {
+        Vector2 enemypos;
+        enemypos = new Vector2(Enemy.position.x, Enemy.position.y + 0.625f);
+        if (enemypos == null)
+        {
+            return;
+        }
+        Gizmos.DrawWireCube(enemypos, new Vector2(20f, 2f));
     }
 }
