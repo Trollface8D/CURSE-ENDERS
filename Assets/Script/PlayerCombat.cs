@@ -13,6 +13,9 @@ public class PlayerCombat : MonoBehaviour
     public float attackRate = 2f;
     private float nextAttackTime = 0f;
 
+    Animator m_Animator;
+    bool m_attack;
+
 
     // Update is called once per frame
     void Update()
@@ -22,10 +25,11 @@ public class PlayerCombat : MonoBehaviour
             if (Input.GetButtonDown("Fire1"))
             {
                 Attack();
+                m_Animator.SetBool ("attack", true);
+                m_Animator.SetBool ("attack", false);
                 nextAttackTime = Time.time + 1f / attackRate;
             }
         }
-        
     }
     void Attack()
     {
