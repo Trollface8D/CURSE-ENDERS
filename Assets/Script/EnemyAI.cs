@@ -34,6 +34,8 @@ public class EnemyAI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // enemy layer collision ignore
+        Physics2D.IgnoreLayerCollision(10, 10);
         if (mustpatrol)
         {
             rb.velocity = new Vector2(walkSpeed * Time.fixedDeltaTime * 10, rb.velocity.y);

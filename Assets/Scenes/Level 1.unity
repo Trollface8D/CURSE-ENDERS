@@ -5708,7 +5708,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startspeed: 20
-  chasespeed: 35
+  chasespeed: 20
   mustpatrol: 0
   rb: {fileID: 1198875564}
   groundCheckPos: {fileID: 841474755}
@@ -10403,7 +10403,7 @@ MonoBehaviour:
   animator: {fileID: 1901054540}
   attackDamage: 40
   attackRange: 0.5
-  attackRate: 2
+  attackRate: 3
 --- !u!114 &1901054547
 MonoBehaviour:
   m_ObjectHideFlags: 0
