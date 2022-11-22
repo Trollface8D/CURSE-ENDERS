@@ -5617,11 +5617,11 @@ GameObject:
   m_Component:
   - component: {fileID: 1198875567}
   - component: {fileID: 1198875566}
-  - component: {fileID: 1198875565}
   - component: {fileID: 1198875564}
   - component: {fileID: 1198875563}
-  - component: {fileID: 1198875562}
+  - component: {fileID: 1198875565}
   - component: {fileID: 1198875568}
+  - component: {fileID: 1198875562}
   m_Layer: 10
   m_Name: Enemy 2 charger
   m_TagString: Untagged
@@ -5638,11 +5638,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 1198875561}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c0b129c92cafcf7469212871432206d0, type: 3}
+  m_Script: {fileID: 11500000, guid: 1476c67e97a54264db94b1b12aa6dc79, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  EnemyObj: {fileID: 1198875561}
-  maxHealth: 100
+  attackpoint: {fileID: 1231203928}
+  playerLayer:
+    serializedVersion: 2
+    m_Bits: 512
+  attackDamage: 10
+  attackRange: 0.2
+  attackRate: 2
 --- !u!61 &1198875563
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -5704,7 +5709,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startspeed: 20
   chasespeed: 35
-  walkSpeed: 20
   mustpatrol: 0
   rb: {fileID: 1198875564}
   groundCheckPos: {fileID: 841474755}
@@ -5718,6 +5722,7 @@ MonoBehaviour:
   Player: {fileID: 1901054545}
   Enemy: {fileID: 1198875567}
   filprange: 0.3
+  nextFreezetime: 0
 --- !u!212 &1198875566
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -5781,6 +5786,7 @@ Transform:
   m_Children:
   - {fileID: 841474755}
   - {fileID: 1339389150}
+  - {fileID: 1231203928}
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -5793,7 +5799,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1198875561}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c0b129c92cafcf7469212871432206d0, type: 3}
+  m_Script: {fileID: 11500000, guid: e33cbe1b6005be047838c84e260fb1ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   EnemyObj: {fileID: 1198875561}
@@ -5833,6 +5839,36 @@ Transform:
   - {fileID: 1329151626}
   m_Father: {fileID: 221318799}
   m_RootOrder: 15
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1231203927
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1231203928}
+  m_Layer: 10
+  m_Name: Enemy atk
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1231203928
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1231203927}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.22, y: -0.17, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1198875567}
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1233348606
 GameObject:
@@ -10104,10 +10140,11 @@ GameObject:
   m_Component:
   - component: {fileID: 1901054545}
   - component: {fileID: 1901054544}
-  - component: {fileID: 1901054543}
   - component: {fileID: 1901054542}
   - component: {fileID: 1901054541}
   - component: {fileID: 1901054540}
+  - component: {fileID: 1901054543}
+  - component: {fileID: 1901054547}
   - component: {fileID: 1901054546}
   m_Layer: 9
   m_Name: hunter
@@ -10363,9 +10400,23 @@ MonoBehaviour:
   enemyLayers:
     serializedVersion: 2
     m_Bits: 1024
+  animator: {fileID: 1901054540}
   attackDamage: 40
   attackRange: 0.5
   attackRate: 2
+--- !u!114 &1901054547
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1901054539}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 521e6c672e6d0b4488cc929e1e86d6f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth1: 100
 --- !u!1 &1916435007
 GameObject:
   m_ObjectHideFlags: 0
