@@ -1564,9 +1564,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1352877921}
   - component: {fileID: 1352877920}
-  - component: {fileID: 1352877919}
   - component: {fileID: 1352877918}
   - component: {fileID: 1352877922}
+  - component: {fileID: 1352877919}
   - component: {fileID: 1352877923}
   - component: {fileID: 1352877924}
   m_Layer: 10
@@ -1791,7 +1791,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1576126607}
   m_Layer: 10
-  m_Name: AttackPoint
+  m_Name: EnemyAttackPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
