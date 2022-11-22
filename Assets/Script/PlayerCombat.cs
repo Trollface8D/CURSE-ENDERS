@@ -6,6 +6,7 @@ public class PlayerCombat : MonoBehaviour
 {
     public Transform attackpoint;
     public LayerMask enemyLayers;
+    public Animator animator;
 
     public int attackDamage = 40;
     public float attackRange = 4f;
@@ -13,8 +14,7 @@ public class PlayerCombat : MonoBehaviour
     public float attackRate = 2f;
     private float nextAttackTime = 0f;
 
-    Animator m_Animator;
-    bool m_attack;
+    private bool attack;
 
 
     // Update is called once per frame
@@ -25,14 +25,17 @@ public class PlayerCombat : MonoBehaviour
             if (Input.GetButtonDown("Fire1"))
             {
                 Attack();
-                //m_Animator.SetBool ("attack", true);
-                //m_Animator.SetBool ("attack", false);
                 nextAttackTime = Time.time + 1f / attackRate;
             }
         }
+        else if(Time.time <= nextAttackTime){
+            animator.SetBool("attack",false);
+        }
+        
     }
     void Attack()
     {
+        animator.SetBool("attack",true);
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackpoint.position, attackRange, enemyLayers);
         foreach(Collider2D enemy in hitEnemies)
         {
