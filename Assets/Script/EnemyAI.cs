@@ -7,9 +7,14 @@ public class EnemyAI : MonoBehaviour
     public float startspeed = 20f;
     public float chasespeed = 40f;
     private float walkSpeed = 20f;
-    [HideInInspector]
 
+    public float strength = 10f;
+    public float knockDuration=0.2f;
+    float hitTime;
+
+    [HideInInspector]
     public bool mustpatrol;
+    public bool OnKnock;
 
     public Rigidbody2D rb;
 
@@ -89,7 +94,12 @@ public class EnemyAI : MonoBehaviour
             //    Flip();
             //}
         }
-              
+
+        if (OnKnock && (IsWall() || IsFilp() || Time.time >= hitTime + knockDuration))
+        {
+            mustpatrol = true;
+            OnKnock = false;
+        }
     }
     //end follow player
     void Flip()
@@ -124,14 +134,18 @@ public class EnemyAI : MonoBehaviour
         }
         Gizmos.DrawWireCube(enemypos, new Vector2(20f, 2f));
     }
+
+    public void knockback()
+    {
+        hitTime = Time.time;
+        OnKnock = true;
+        mustpatrol = false;
+        Vector2 direction = (transform.position - Player.transform.position).normalized;
+        rb.AddForce(direction * strength, ForceMode2D.Impulse);
+    }
+
     public void Freeze(float duration)
     {
-        float temp = walkSpeed;
-        float current = Time.time;
-        walkSpeed = 0;
-        if (Time.time >= current + duration)
-        {
-            walkSpeed = temp;
-        }
+
     }
 }

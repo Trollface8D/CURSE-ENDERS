@@ -24,6 +24,5 @@ public class PlayerStat : MonoBehaviour
     void Die()
     {
         Debug.Log("Die");
-        Debug.Log("Die"); Debug.Log("Die"); Debug.Log("Die"); Debug.Log("Die"); Debug.Log("Die"); Debug.Log("Die"); Debug.Log("Die"); Debug.Log("Die");
     }
 }

@@ -9,7 +9,7 @@ public class PlayerCombat : MonoBehaviour
     public Animator animator;
 
     public int attackDamage = 40;
-    public float attackRange = 4f;
+    public float attackRange = 5f;
 
     public float attackRate = 3f;
     private float nextAttackTime = 0f;
