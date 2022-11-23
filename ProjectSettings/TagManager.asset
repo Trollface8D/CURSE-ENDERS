@@ -62,3 +62,6 @@ TagManager:
   - name: Living
     uniqueID: 1134874221
     locked: 0
+  - name: New Layer
+    uniqueID: 3754222203
+    locked: 0
