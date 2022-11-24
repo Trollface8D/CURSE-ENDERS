@@ -8,7 +8,7 @@ public class EnemyAI : MonoBehaviour
     public float chasespeed = 40f;
     private float walkSpeed = 20f;
 
-    public float strength = 10f;
+    //public float strength = 10f;
     public float knockDuration=0.2f;
     float hitTime;
 
@@ -135,8 +135,9 @@ public class EnemyAI : MonoBehaviour
         Gizmos.DrawWireCube(enemypos, new Vector2(20f, 2f));
     }
 
-    public void knockback()
+    public void knockback(float KnockDuration, float strength)
     {
+        knockDuration = KnockDuration;
         hitTime = Time.time;
         OnKnock = true;
         mustpatrol = false;

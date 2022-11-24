@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerStat : MonoBehaviour
 {
@@ -23,6 +24,7 @@ public class PlayerStat : MonoBehaviour
     }
     void Die()
     {
-        Debug.Log("Die");
+        Application.LoadLevel(Application.loadedLevel);
+        Debug.Log("Restarted");
     }
 }

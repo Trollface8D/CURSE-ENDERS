@@ -21,6 +21,8 @@ public class EnemyCombat : MonoBehaviour
         {
             if (Physics2D.OverlapCircle(attackpoint.position, attackRange, playerLayer))
             {
+                Debug.Log("Enemy Attack Sucesful");
+                GetComponent<EnemyAI>().knockback(0.6f, 7f);
                 AttackPlayer();
                 nextAttackTime = Time.time + 1f / attackRate;
             }

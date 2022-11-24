@@ -17,7 +17,7 @@ public class EnemyStat : MonoBehaviour
     // Update is called once per frame
     public void TakeDamage(int damage)
     {
-        GetComponent<EnemyAI>().knockback();
+        GetComponent<EnemyAI>().knockback(0.2f,10f);
         currentHealth -= damage;
         if(currentHealth <= 0)
         {
