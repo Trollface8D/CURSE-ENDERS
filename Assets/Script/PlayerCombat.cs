@@ -14,13 +14,40 @@ public class PlayerCombat : MonoBehaviour
     public float attackRate = 3f;
     private float nextAttackTime = 0f;
 
+    public float HardhitRate = 10f;
+    private float nextHardhitTime = 0f;
+
+    public float ultTime = 5f;
+
     private bool attack;
 
 
     // Update is called once per frame
     void Update()
     {
-        if(Time.time >= nextAttackTime)
+        if(PlayerStat.ultGate == 100)
+        {
+            if (Input.GetButtonDown("ultimate"))
+            {
+                Debug.Log("ULT DEPLOY");
+                
+            }
+        }
+
+        if (Time.time >= nextHardhitTime)
+        {
+            if (Input.GetButtonDown("LeftShift"))
+            {
+                HardHit();
+                nextHardhitTime = Time.time + HardhitRate;
+            }
+        }
+        else if (Time.time <= nextHardhitTime)
+        {
+            animator.SetBool("attack", false);
+        }
+
+        if (Time.time >= nextAttackTime)
         {
             if (Input.GetButtonDown("Fire1"))
             {
@@ -28,7 +55,8 @@ public class PlayerCombat : MonoBehaviour
                 nextAttackTime = Time.time + 1f / attackRate;
             }
         }
-        else if(Time.time <= nextAttackTime){
+        else if(Time.time <= nextAttackTime)
+        {
             animator.SetBool("attack",false);
         }
         
@@ -42,6 +70,23 @@ public class PlayerCombat : MonoBehaviour
             enemy.GetComponent<EnemyStat>().TakeDamage(attackDamage);
             //Debug.Log("Hit :" + enemy.GetComponent<EnemyStat>().name + " " + enemy.GetComponent<EnemyStat>().currentHealth);
         }
+    }
+
+    void HardHit()
+    {
+        animator.SetBool("attack", true);
+        Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackpoint.position, attackRange, enemyLayers);
+        foreach (Collider2D enemy in hitEnemies)
+        {
+            enemy.GetComponent<EnemyAI>().knockback(0.2f, 20f);
+            enemy.GetComponent<EnemyAI>().Freeze(2f);
+            //Debug.Log("Hit :" + enemy.GetComponent<EnemyStat>().name + " " + enemy.GetComponent<EnemyStat>().currentHealth);
+        }
+    }
+
+    void Ultimate()
+    {
+
     }
 
     private void OnDrawGizmosSelected()

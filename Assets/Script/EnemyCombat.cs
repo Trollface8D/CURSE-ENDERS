@@ -17,7 +17,7 @@ public class EnemyCombat : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Time.time >= nextAttackTime)
+        if (Time.time >= nextAttackTime && !GetComponent<EnemyAI>().OnFreeze)
         {
             if (Physics2D.OverlapCircle(attackpoint.position, attackRange, playerLayer))
             {
@@ -27,7 +27,6 @@ public class EnemyCombat : MonoBehaviour
                 nextAttackTime = Time.time + 1f / attackRate;
             }
         }
-
     }
     void AttackPlayer() 
     {

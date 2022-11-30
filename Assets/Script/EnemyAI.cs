@@ -7,6 +7,7 @@ public class EnemyAI : MonoBehaviour
     public float startspeed = 20f;
     public float chasespeed = 40f;
     private float walkSpeed = 20f;
+    float tempSpeed;
 
     //public float strength = 10f;
     public float knockDuration=0.2f;
@@ -14,7 +15,8 @@ public class EnemyAI : MonoBehaviour
 
     [HideInInspector]
     public bool mustpatrol;
-    public bool OnKnock;
+    private bool OnKnock;
+    public bool OnFreeze;
 
     public Rigidbody2D rb;
 
@@ -28,7 +30,7 @@ public class EnemyAI : MonoBehaviour
 
     public float filprange = 0.3f;
 
-    public float nextFreezetime = 0f;
+    public float FreezeDuration = 3f;
     // Start is called before the first frame update
     void Start()
     {
@@ -47,58 +49,70 @@ public class EnemyAI : MonoBehaviour
         }
 
         //AI follow player
-        if (Mathf.Abs(Player.position.x - Enemy.position.x) <filprange)
+        if (!OnFreeze)
         {
+            if (Mathf.Abs(Player.position.x - Enemy.position.x) <filprange)
+            {
             
-        }
-        else if (!IsPlayerinrange())
-        {
-            //AI Patrol player
-            if (IsWall() || IsFilp())
-            {
-                Flip();
             }
-            //
-            if (walkSpeed >= 0f)
+            else if (!IsPlayerinrange())
             {
-                walkSpeed = startspeed;
-            }
-            else
-            {
-                walkSpeed = -startspeed;
-            }
-        }
-        else if (IsPlayerinrange())
-        {
-            //Debug.Log("Hitting");
-
-            if (walkSpeed > 0f)
-            {
-                walkSpeed = chasespeed;
-                if ((Player.position.x - Enemy.position.x) < 0)
+                //AI Patrol player
+                if (IsWall() || IsGrounded())
                 {
                     Flip();
                 }
+                //
+                //if (walkSpeed >= 0f)
+                //{
+                //    walkSpeed = startspeed;
+                //}
+                //else
+                //{
+                //    walkSpeed = -startspeed;
+                //}
+            }
+            else if (IsPlayerinrange())
+            {
+                //Debug.Log("Hitting");
+
+                if (walkSpeed > 0f)
+                {
+                    walkSpeed = chasespeed;
+                    if ((Player.position.x - Enemy.position.x) < 0)
+                    {
+                        Flip();
+                    }
                 
-            }
-            else if(walkSpeed < 0f)
-            {
-                walkSpeed = -chasespeed;
-                if ((Player.position.x - Enemy.position.x) > 0)
-                {
-                    Flip();
                 }
+                else if(walkSpeed < 0f)
+                {
+                    walkSpeed = -chasespeed;
+                    if ((Player.position.x - Enemy.position.x) > 0)
+                    {
+                        Flip();
+                    }
+                }
+                //if (IsWall() || IsFilp())
+                //{
+                //    Flip();
+                //}
             }
-            //if (IsWall() || IsFilp())
-            //{
-            //    Flip();
-            //}
         }
 
-        if (OnKnock && (IsWall() || IsFilp() || Time.time >= hitTime + knockDuration))
+        if (OnKnock && (IsWall() || IsGrounded() || Time.time >= hitTime + knockDuration))
         {
             mustpatrol = true;
             OnKnock = false;
+        }
+        if (OnFreeze)
+        {
+            if(Time.time >= hitTime + FreezeDuration)
+            {
+                mustpatrol = true;
+                OnFreeze = false;
+                walkSpeed = tempSpeed;
+            }
         }
     }
     //end follow player
@@ -115,7 +129,7 @@ public class EnemyAI : MonoBehaviour
         return Physics2D.OverlapCircle(WallCheck.position, 0.2f, groundlayer);
     }
 
-    private bool IsFilp()
+    private bool IsGrounded()
     {
         return !Physics2D.OverlapCircle(groundCheckPos.position, 0.2f, groundlayer);
     }
@@ -147,6 +161,10 @@ public class EnemyAI : MonoBehaviour
 
     public void Freeze(float duration)
     {
-
+        tempSpeed = walkSpeed;
+        walkSpeed = 0;
+        FreezeDuration = duration;
+        OnFreeze = true;
+        mustpatrol = false;
     }
 }
