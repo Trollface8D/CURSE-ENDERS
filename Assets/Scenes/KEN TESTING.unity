@@ -910,9 +910,9 @@ Rigidbody2D:
   m_UseAutoMass: 0
   m_Mass: 1
   m_LinearDrag: 0
-  m_AngularDrag: 5
+  m_AngularDrag: 0.05
   m_GravityScale: 5
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 15996ae7f82d2c64dafd1ef195c1c3c5, type: 2}
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
@@ -975,7 +975,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 550654691}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 7.85, y: -1.81, z: 0}
+  m_LocalPosition: {x: -4.91, y: -1.81, z: 0}
   m_LocalScale: {x: 0.364897, y: 0.364897, z: 0.364897}
   m_Children:
   - {fileID: 1902882100}
@@ -1305,7 +1305,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 658439387}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.33, y: -1.87, z: 0}
+  m_LocalPosition: {x: -8.66, y: -1.87, z: 0}
   m_LocalScale: {x: 0.18021531, y: 0.18021531, z: 0.18021531}
   m_Children:
   - {fileID: 2133788772}
@@ -1334,7 +1334,7 @@ MonoBehaviour:
   attackDamage: 25
   attackRange: 1
   attackRate: 2
-  HardhitRate: 3
+  HardhitRate: 5
   ultTime: 5
 --- !u!114 &658439394
 MonoBehaviour:
@@ -1606,9 +1606,9 @@ Rigidbody2D:
   m_UseAutoMass: 0
   m_Mass: 1
   m_LinearDrag: 0
-  m_AngularDrag: 5
+  m_AngularDrag: 0.05
   m_GravityScale: 5
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 15996ae7f82d2c64dafd1ef195c1c3c5, type: 2}
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0

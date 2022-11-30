@@ -79,7 +79,7 @@ public class PlayerCombat : MonoBehaviour
         foreach (Collider2D enemy in hitEnemies)
         {
             enemy.GetComponent<EnemyAI>().knockback(0.2f, 20f);
-            enemy.GetComponent<EnemyAI>().Freeze(2f);
+            enemy.GetComponent<EnemyAI>().Freeze(1f);
             //Debug.Log("Hit :" + enemy.GetComponent<EnemyStat>().name + " " + enemy.GetComponent<EnemyStat>().currentHealth);
         }
     }
