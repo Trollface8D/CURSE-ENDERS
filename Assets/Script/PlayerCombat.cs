@@ -5,6 +5,8 @@ using UnityEngine;
 public class PlayerCombat : MonoBehaviour
 {
     public Transform attackpoint;
+    public Transform firePoint;
+
     public LayerMask enemyLayers;
     public Animator animator;
 
@@ -21,6 +23,7 @@ public class PlayerCombat : MonoBehaviour
 
     private bool attack;
 
+    public GameObject bulletPrefab;
 
     // Update is called once per frame
     void Update()
@@ -55,11 +58,22 @@ public class PlayerCombat : MonoBehaviour
                 nextAttackTime = Time.time + 1f / attackRate;
             }
         }
+
         else if(Time.time <= nextAttackTime)
         {
             animator.SetBool("attack",false);
         }
-        
+
+        if (Input.GetButtonDown("Fire2"))
+        {
+            Shoot();
+        }
+    }
+
+
+    void Shoot()
+    {
+        Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
     }
     void Attack()
     {
@@ -68,6 +82,8 @@ public class PlayerCombat : MonoBehaviour
         foreach(Collider2D enemy in hitEnemies)
         {
             enemy.GetComponent<EnemyStat>().TakeDamage(attackDamage);
+            enemy.GetComponent<EnemyAI>().knockback(0.1f, 20f);
+            enemy.GetComponent<EnemyAI>().Freeze(0.3f);
             //Debug.Log("Hit :" + enemy.GetComponent<EnemyStat>().name + " " + enemy.GetComponent<EnemyStat>().currentHealth);
         }
     }
@@ -78,7 +94,7 @@ public class PlayerCombat : MonoBehaviour
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackpoint.position, attackRange, enemyLayers);
         foreach (Collider2D enemy in hitEnemies)
         {
-            enemy.GetComponent<EnemyAI>().knockback(0.2f, 20f);
+            enemy.GetComponent<EnemyAI>().knockback(0.1f, 40f);
             enemy.GetComponent<EnemyAI>().Freeze(1f);
             //Debug.Log("Hit :" + enemy.GetComponent<EnemyStat>().name + " " + enemy.GetComponent<EnemyStat>().currentHealth);
         }

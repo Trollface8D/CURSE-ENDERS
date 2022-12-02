@@ -11,10 +11,10 @@ public class EnemyAI : MonoBehaviour
 
     //public float strength = 10f;
     public float knockDuration=0.2f;
-    float hitTime;
+    float hitTimeKnockback;
+    float hitTimeFreeze;
 
-    [HideInInspector]
-    public bool mustpatrol;
+    private bool mustpatrol;
     private bool OnKnock;
     public bool OnFreeze;
 
@@ -30,7 +30,7 @@ public class EnemyAI : MonoBehaviour
 
     public float filprange = 0.3f;
 
-    public float FreezeDuration = 3f;
+    public float FreezeDuration = 0f;
     // Start is called before the first frame update
     void Start()
     {
@@ -62,20 +62,9 @@ public class EnemyAI : MonoBehaviour
                 {
                     Flip();
                 }
-                //
-                //if (walkSpeed >= 0f)
-                //{
-                //    walkSpeed = startspeed;
-                //}
-                //else
-                //{
-                //    walkSpeed = -startspeed;
-                //}
             }
             else if (IsPlayerinrange())
             {
-                //Debug.Log("Hitting");
-
                 if (walkSpeed > 0f)
                 {
                     walkSpeed = chasespeed;
@@ -93,22 +82,19 @@ public class EnemyAI : MonoBehaviour
                         Flip();
                     }
                 }
-                //if (IsWall() || IsFilp())
-                //{
-                //    Flip();
-                //}
             }
         }
 
-        if (OnKnock && (IsWall() || IsGrounded() || Time.time >= hitTime + knockDuration))
+        if (OnKnock && Time.time >= hitTimeKnockback + knockDuration)
         {
             mustpatrol = true;
             OnKnock = false;
         }
         if (OnFreeze)
         {
-            if(Time.time >= hitTime + FreezeDuration)
+            if(Time.time >= hitTimeFreeze + FreezeDuration)
             {
+                FreezeDuration = 0f;
                 mustpatrol = true;
                 OnFreeze = false;
                 walkSpeed = tempSpeed;
@@ -120,7 +106,6 @@ public class EnemyAI : MonoBehaviour
     {
         mustpatrol = false;
         transform.localScale = new Vector2(transform.localScale.x * -1, transform.localScale.y);
-        //direction *= -1;
         walkSpeed *= -1;
         mustpatrol = true;
     }
@@ -136,7 +121,6 @@ public class EnemyAI : MonoBehaviour
     private bool IsPlayerinrange()
     {
         return Physics2D.OverlapBox(new Vector2(Enemy.position.x, Enemy.position.y + 0.625f), new Vector2(20f,2f),0, Playerlayer);
-        //return Physics2D.OverlapCircle(Enemy.position, 3f, Playerlayer);
     }
     private void OnDrawGizmosSelected()
     {
@@ -152,7 +136,7 @@ public class EnemyAI : MonoBehaviour
     public void knockback(float KnockDuration, float strength)
     {
         knockDuration = KnockDuration;
-        hitTime = Time.time;
+        hitTimeKnockback = Time.time;
         OnKnock = true;
         mustpatrol = false;
         Vector2 direction = (transform.position - Player.transform.position).normalized;
@@ -161,9 +145,10 @@ public class EnemyAI : MonoBehaviour
 
     public void Freeze(float duration)
     {
+        hitTimeFreeze = Time.time;
+        FreezeDuration = duration;
         tempSpeed = walkSpeed;
         walkSpeed = 0;
-        FreezeDuration = duration;
         OnFreeze = true;
         mustpatrol = false;
     }
