@@ -8011,7 +8011,6 @@ MonoBehaviour:
   startspeed: 20
   chasespeed: 20
   knockDuration: 0.2
-  OnFreeze: 0
   rb: {fileID: 1198875564}
   groundCheckPos: {fileID: 841474755}
   WallCheck: {fileID: 1339389150}
@@ -8024,7 +8023,6 @@ MonoBehaviour:
   Player: {fileID: 1901054545}
   Enemy: {fileID: 1198875567}
   filprange: 0.3
-  FreezeDuration: 0
 --- !u!212 &1198875566
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -11792,7 +11790,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1613142076}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.16, y: -0.43, z: -10}
+  m_LocalPosition: {x: 14.17, y: -0.43, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -13980,6 +13978,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 5
   jumpingPower: 10
+  animator: {fileID: 0}
   rb: {fileID: 1901054542}
   groundCheck: {fileID: 760081170}
   RightWallCheck: {fileID: 0}
@@ -14044,7 +14043,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1901054539}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.96, y: -1.43, z: 0}
+  m_LocalPosition: {x: 13.97, y: -1.43, z: 0}
   m_LocalScale: {x: 0.15046619, y: 0.15289725, z: 0.15289725}
   m_Children:
   - {fileID: 760081170}

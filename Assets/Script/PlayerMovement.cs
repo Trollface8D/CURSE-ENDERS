@@ -10,6 +10,9 @@ public class PlayerMovement : MonoBehaviour
     private bool isFacingRight = true;
     private bool doublejump = true;
 
+    public Animator animator;
+    private bool jumping;
+
 
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private Transform groundCheck;
@@ -28,25 +31,27 @@ public class PlayerMovement : MonoBehaviour
 
         if (IsGrounded())
         {
+            animator.SetBool("jumping",false);
             doublejump = true;
         }
-        
 
-        if (Input.GetButtonDown("Jump")&& (IsGrounded()))
+        if (Input.GetButtonDown("Jump") && (IsGrounded()))
         {
             rb.velocity = new Vector2(rb.velocity.x, jumpingPower);
         }
 
         //mutiple jump
-        else if(Input.GetButtonDown("Jump") && (doublejump  )) //double jump : remove "Iswall()"
+        else if(Input.GetButtonDown("Jump") && (doublejump)) //double jump : remove "Iswall()"
         {
             rb.velocity = new Vector2(rb.velocity.x, jumpingPower);
+            animator.SetBool("jumping",true);
             doublejump = false;
         }
 
         if (Input.GetButtonUp("Jump") && rb.velocity.y > 0f)
         {
             rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * 0.5f);
+            animator.SetBool("jumping",true);
         }
 
         filp();
@@ -72,6 +77,7 @@ public class PlayerMovement : MonoBehaviour
     {
         rb.velocity = new Vector2(horizontal * speed, rb.velocity.y);
     }
+
     private void filp()
     {
         if (isFacingRight && horizontal < 0f || !isFacingRight && horizontal > 0f)
