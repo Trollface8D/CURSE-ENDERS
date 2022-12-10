@@ -145,7 +145,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 23950161}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.38, y: 0.01, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1901054545}
@@ -8010,7 +8010,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startspeed: 20
   chasespeed: 20
-  mustpatrol: 0
+  knockDuration: 0.2
+  OnFreeze: 0
   rb: {fileID: 1198875564}
   groundCheckPos: {fileID: 841474755}
   WallCheck: {fileID: 1339389150}
@@ -8023,7 +8024,7 @@ MonoBehaviour:
   Player: {fileID: 1901054545}
   Enemy: {fileID: 1198875567}
   filprange: 0.3
-  nextFreezetime: 0
+  FreezeDuration: 0
 --- !u!212 &1198875566
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -8104,6 +8105,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   EnemyObj: {fileID: 1198875561}
+  staggered: 0
   maxHealth: 100
 --- !u!1 &1208399986
 GameObject:
@@ -11766,7 +11768,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 2
+  orthographic size: 2.3901083
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -11790,7 +11792,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1613142076}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.16, y: -0.65, z: -10}
+  m_LocalPosition: {x: 3.16, y: -0.43, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -13980,7 +13982,6 @@ MonoBehaviour:
   jumpingPower: 10
   rb: {fileID: 1901054542}
   groundCheck: {fileID: 760081170}
-  LeftWallCheck: {fileID: 0}
   RightWallCheck: {fileID: 0}
   groundLayer:
     serializedVersion: 2
@@ -14065,6 +14066,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attackpoint: {fileID: 1163245243}
+  firePoint: {fileID: 0}
   enemyLayers:
     serializedVersion: 2
     m_Bits: 1024
@@ -14072,6 +14074,10 @@ MonoBehaviour:
   attackDamage: 40
   attackRange: 0.5
   attackRate: 3
+  fireRate: 2
+  HardhitRate: 10
+  ultTime: 5
+  bulletPrefab: {fileID: 0}
 --- !u!114 &1901054547
 MonoBehaviour:
   m_ObjectHideFlags: 0

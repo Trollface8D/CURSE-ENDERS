@@ -16,6 +16,9 @@ public class PlayerCombat : MonoBehaviour
     public float attackRate = 3f;
     private float nextAttackTime = 0f;
 
+    public float fireRate = 2f;
+    private float nextFireTime = 0f;
+
     public float HardhitRate = 10f;
     private float nextHardhitTime = 0f;
 
@@ -28,6 +31,7 @@ public class PlayerCombat : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //Ultimate (not done)
         if(PlayerStat.ultGate == 100)
         {
             if (Input.GetButtonDown("ultimate"))
@@ -63,10 +67,14 @@ public class PlayerCombat : MonoBehaviour
         {
             animator.SetBool("attack",false);
         }
-
-        if (Input.GetButtonDown("Fire2"))
+        //Shooting
+        if(Time.time >= nextFireTime)
         {
-            Shoot();
+            if (Input.GetButtonDown("Fire2"))
+            {
+                Shoot();
+                nextFireTime = Time.time + 1f / fireRate;
+            }
         }
     }
 
@@ -84,7 +92,6 @@ public class PlayerCombat : MonoBehaviour
             enemy.GetComponent<EnemyStat>().TakeDamage(attackDamage);
             enemy.GetComponent<EnemyAI>().knockback(0.1f, 20f);
             enemy.GetComponent<EnemyAI>().Freeze(0.3f);
-            //Debug.Log("Hit :" + enemy.GetComponent<EnemyStat>().name + " " + enemy.GetComponent<EnemyStat>().currentHealth);
         }
     }
 
@@ -96,7 +103,6 @@ public class PlayerCombat : MonoBehaviour
         {
             enemy.GetComponent<EnemyAI>().knockback(0.1f, 40f);
             enemy.GetComponent<EnemyAI>().Freeze(1f);
-            //Debug.Log("Hit :" + enemy.GetComponent<EnemyStat>().name + " " + enemy.GetComponent<EnemyStat>().currentHealth);
         }
     }
 

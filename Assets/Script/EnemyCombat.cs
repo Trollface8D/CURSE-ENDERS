@@ -17,7 +17,7 @@ public class EnemyCombat : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Time.time >= nextAttackTime && !GetComponent<EnemyAI>().OnFreeze)
+        if (Time.time >= nextAttackTime && !GetComponent<EnemyStat>().staggered)
         {
             if (Physics2D.OverlapCircle(attackpoint.position, attackRange, playerLayer))
             {

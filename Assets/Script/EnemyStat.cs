@@ -6,6 +6,8 @@ public class EnemyStat : MonoBehaviour
 {
     public GameObject EnemyObj;
 
+    public bool staggered = false;
+
     public int maxHealth = 100;
     int currentHealth;
     // Start is called before the first frame update

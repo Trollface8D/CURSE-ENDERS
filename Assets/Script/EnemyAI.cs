@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class EnemyAI : MonoBehaviour
 {
-    public float startspeed = 20f;
-    public float chasespeed = 40f;
+    public float startspeed = 15f;
+    public float chasespeed = 25f;
     private float walkSpeed = 20f;
     float tempSpeed;
 
@@ -16,7 +16,7 @@ public class EnemyAI : MonoBehaviour
 
     private bool mustpatrol;
     private bool OnKnock;
-    public bool OnFreeze;
+    private bool OnFreeze;
 
     public Rigidbody2D rb;
 
@@ -30,7 +30,8 @@ public class EnemyAI : MonoBehaviour
 
     public float filprange = 0.3f;
 
-    public float FreezeDuration = 0f;
+    float FreezeDuration = 0f;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -89,6 +90,7 @@ public class EnemyAI : MonoBehaviour
         {
             mustpatrol = true;
             OnKnock = false;
+            GetComponent<EnemyStat>().staggered = false;
         }
         if (OnFreeze)
         {
@@ -98,6 +100,7 @@ public class EnemyAI : MonoBehaviour
                 mustpatrol = true;
                 OnFreeze = false;
                 walkSpeed = tempSpeed;
+                GetComponent<EnemyStat>().staggered = false;
             }
         }
     }
@@ -105,7 +108,8 @@ public class EnemyAI : MonoBehaviour
     void Flip()
     {
         mustpatrol = false;
-        transform.localScale = new Vector2(transform.localScale.x * -1, transform.localScale.y);
+        transform.Rotate(0f, 180f, 0f);
+        //transform.localScale = new Vector2(transform.localScale.x * -1, transform.localScale.y);
         walkSpeed *= -1;
         mustpatrol = true;
     }
@@ -141,15 +145,20 @@ public class EnemyAI : MonoBehaviour
         mustpatrol = false;
         Vector2 direction = (transform.position - Player.transform.position).normalized;
         rb.AddForce(direction * strength, ForceMode2D.Impulse);
+        GetComponent<EnemyStat>().staggered = true;
     }
 
     public void Freeze(float duration)
     {
         hitTimeFreeze = Time.time;
         FreezeDuration = duration;
-        tempSpeed = walkSpeed;
+        if(walkSpeed != 0)
+        {
+            tempSpeed = walkSpeed;
+        }
         walkSpeed = 0;
         OnFreeze = true;
         mustpatrol = false;
+        GetComponent<EnemyStat>().staggered = true;
     }
 }
