@@ -1487,6 +1487,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   EnemyObj: {fileID: 1867220297}
+  staggered: 0
   maxHealth: 100
 --- !u!114 &1867220305
 MonoBehaviour:
