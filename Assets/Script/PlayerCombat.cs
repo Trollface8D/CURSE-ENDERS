@@ -102,7 +102,7 @@ public class PlayerCombat : MonoBehaviour
         foreach (Collider2D enemy in hitEnemies)
         {
             enemy.GetComponent<EnemyAI>().knockback(0.1f, 40f);
-            enemy.GetComponent<EnemyAI>().Freeze(1f);
+            enemy.GetComponent<EnemyAI>().Freeze(5f);
         }
     }
 

@@ -1230,6 +1230,36 @@ Transform:
   m_Father: {fileID: 1867220300}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1663028593
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1663028594}
+  m_Layer: 10
+  m_Name: FirePoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1663028594
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1663028593}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 2.29, y: -0.6, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1867220300}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1690540037
 GameObject:
   m_ObjectHideFlags: 0
@@ -1275,6 +1305,7 @@ GameObject:
   - component: {fileID: 1867220301}
   - component: {fileID: 1867220303}
   - component: {fileID: 1867220304}
+  - component: {fileID: 1867220305}
   m_Layer: 10
   m_Name: Snail_0
   m_TagString: Untagged
@@ -1364,6 +1395,7 @@ Transform:
   m_Children:
   - {fileID: 1690540038}
   - {fileID: 1598861081}
+  - {fileID: 1663028594}
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1400,9 +1432,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a5f55a8e86c8df5409cb5e7ed47b462a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startspeed: 15
-  chasespeed: 15
+  startspeed: 10
+  chasespeed: 5
   knockDuration: 0.2
+  onChase: 0
   rb: {fileID: 1867220301}
   groundCheckPos: {fileID: 1690540038}
   WallCheck: {fileID: 1598861081}
@@ -1454,8 +1487,28 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   EnemyObj: {fileID: 1867220297}
-  staggered: 0
   maxHealth: 100
+--- !u!114 &1867220305
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1867220297}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68f0d641354abf544b2135d2df668abc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bulletPrefab: {fileID: 7302529950083210893, guid: 564adb452ea6a4a48b78b7b12e436fb1,
+    type: 3}
+  firePoint: {fileID: 1663028594}
+--- !u!95 &1893393288 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 8980298192264132268, guid: 23e4b52a1780539439f2c339cc71382f,
+    type: 3}
+  m_PrefabInstance: {fileID: 8980298192713321039}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &4347338452491134432
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1547,6 +1600,11 @@ PrefabInstance:
       propertyPath: m_LocalPosition.x
       value: 4.12
       objectReference: {fileID: 0}
+    - target: {fileID: 8980298192264132243, guid: 23e4b52a1780539439f2c339cc71382f,
+        type: 3}
+      propertyPath: animator
+      value: 
+      objectReference: {fileID: 1893393288}
     - target: {fileID: 8980298192264132244, guid: 23e4b52a1780539439f2c339cc71382f,
         type: 3}
       propertyPath: m_Name

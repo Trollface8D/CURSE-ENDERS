@@ -7,7 +7,7 @@ public class EnemyAI : MonoBehaviour
     public float startspeed = 15f;
     public float chasespeed = 25f;
     private float walkSpeed = 20f;
-    float tempSpeed;
+
 
     //public float strength = 10f;
     public float knockDuration=0.2f;
@@ -17,6 +17,8 @@ public class EnemyAI : MonoBehaviour
     private bool mustpatrol;
     private bool OnKnock;
     private bool OnFreeze;
+    [HideInInspector]
+    public bool onChase=false;
 
     public Rigidbody2D rb;
 
@@ -44,7 +46,12 @@ public class EnemyAI : MonoBehaviour
     {
         // enemy layer collision ignore
         Physics2D.IgnoreLayerCollision(10, 10);
-        if (mustpatrol)
+        if (OnFreeze && !OnKnock)
+        {
+            rb.velocity = new Vector2(0 * Time.fixedDeltaTime * 10, rb.velocity.y);
+        }
+
+        else if (mustpatrol)
         {
             rb.velocity = new Vector2(walkSpeed * Time.fixedDeltaTime * 10, rb.velocity.y);
         }
@@ -58,6 +65,7 @@ public class EnemyAI : MonoBehaviour
             }
             else if (!IsPlayerinrange())
             {
+                onChase = false;
                 //AI Patrol player
                 if (IsWall() || IsGrounded())
                 {
@@ -66,6 +74,7 @@ public class EnemyAI : MonoBehaviour
             }
             else if (IsPlayerinrange())
             {
+                onChase = true;
                 if (walkSpeed > 0f)
                 {
                     walkSpeed = chasespeed;
@@ -90,7 +99,6 @@ public class EnemyAI : MonoBehaviour
         {
             mustpatrol = true;
             OnKnock = false;
-            GetComponent<EnemyStat>().staggered = false;
         }
         if (OnFreeze)
         {
@@ -99,7 +107,6 @@ public class EnemyAI : MonoBehaviour
                 FreezeDuration = 0f;
                 mustpatrol = true;
                 OnFreeze = false;
-                walkSpeed = tempSpeed;
                 GetComponent<EnemyStat>().staggered = false;
             }
         }
@@ -142,21 +149,15 @@ public class EnemyAI : MonoBehaviour
         knockDuration = KnockDuration;
         hitTimeKnockback = Time.time;
         OnKnock = true;
-        mustpatrol = false;
+       // mustpatrol = false;
         Vector2 direction = (transform.position - Player.transform.position).normalized;
         rb.AddForce(direction * strength, ForceMode2D.Impulse);
-        GetComponent<EnemyStat>().staggered = true;
     }
 
     public void Freeze(float duration)
     {
         hitTimeFreeze = Time.time;
         FreezeDuration = duration;
-        if(walkSpeed != 0)
-        {
-            tempSpeed = walkSpeed;
-        }
-        walkSpeed = 0;
         OnFreeze = true;
         mustpatrol = false;
         GetComponent<EnemyStat>().staggered = true;
