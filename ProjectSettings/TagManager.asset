@@ -38,6 +38,9 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Veryfar
+    uniqueID: 810036243
+    locked: 0
   - name: Farbg
     uniqueID: 54488421
     locked: 0
