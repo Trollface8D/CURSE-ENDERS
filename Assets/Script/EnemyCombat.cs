@@ -10,22 +10,30 @@ public class EnemyCombat : MonoBehaviour
     public int attackDamage = 10;
     public float attackRange = 0.2f;
 
-    public float attackRate = 2f;
+    public float attackRate = 1f;
     private float nextAttackTime = 0f;
 
 
     // Update is called once per frame
     void Update()
     {
-        if (Time.time >= nextAttackTime && !GetComponent<EnemyStat>().staggered)
+        if (Physics2D.OverlapCircle(attackpoint.position, attackRange, playerLayer) && !GetComponent<EnemyStat>().staggered)
         {
-            if (Physics2D.OverlapCircle(attackpoint.position, attackRange, playerLayer))
+            Debug.Log("Enemy Charging");
+            GetComponent<EnemyAI>().FreeFreeze(attackRate);
+            nextAttackTime += Time.deltaTime;
+            if (nextAttackTime >= attackRate && !GetComponent<EnemyStat>().staggered)
             {
                 Debug.Log("Enemy Attack Sucesful");
-                GetComponent<EnemyAI>().knockback(0.6f, 7f);
+                //GetComponent<EnemyAI>().knockback(0.6f, 7f);//temporary after hit action
                 AttackPlayer();
-                nextAttackTime = Time.time + 1f / attackRate;
+                nextAttackTime = 0f;
+                //nextAttackTime = Time.time + 1f / attackRate;
             }
+        }
+        else
+        {
+            nextAttackTime = 0f;
         }
     }
     void AttackPlayer() 

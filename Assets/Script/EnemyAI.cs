@@ -10,7 +10,7 @@ public class EnemyAI : MonoBehaviour
 
 
     //public float strength = 10f;
-    public float knockDuration=0.2f;
+    public float knockDuration = 0.2f;
     float hitTimeKnockback;
     float hitTimeFreeze;
 
@@ -18,7 +18,7 @@ public class EnemyAI : MonoBehaviour
     private bool OnKnock;
     private bool OnFreeze;
     [HideInInspector]
-    public bool onChase=false;
+    public bool onChase = false;
 
     public Rigidbody2D rb;
 
@@ -59,9 +59,9 @@ public class EnemyAI : MonoBehaviour
         //AI follow player
         if (!OnFreeze)
         {
-            if (Mathf.Abs(Player.position.x - Enemy.position.x) <filprange)
+            if (Mathf.Abs(Player.position.x - Enemy.position.x) < filprange)
             {
-            
+
             }
             else if (!IsPlayerinrange())
             {
@@ -82,9 +82,9 @@ public class EnemyAI : MonoBehaviour
                     {
                         Flip();
                     }
-                
+
                 }
-                else if(walkSpeed < 0f)
+                else if (walkSpeed < 0f)
                 {
                     walkSpeed = -chasespeed;
                     if ((Player.position.x - Enemy.position.x) > 0)
@@ -102,7 +102,7 @@ public class EnemyAI : MonoBehaviour
         }
         if (OnFreeze)
         {
-            if(Time.time >= hitTimeFreeze + FreezeDuration)
+            if (Time.time >= hitTimeFreeze + FreezeDuration)
             {
                 FreezeDuration = 0f;
                 mustpatrol = true;
@@ -131,7 +131,7 @@ public class EnemyAI : MonoBehaviour
     }
     private bool IsPlayerinrange()
     {
-        return Physics2D.OverlapBox(new Vector2(Enemy.position.x, Enemy.position.y + 0.625f), new Vector2(20f,2f),0, Playerlayer);
+        return Physics2D.OverlapBox(new Vector2(Enemy.position.x, Enemy.position.y + 0.625f), new Vector2(20f, 2f), 0, Playerlayer);
     }
     private void OnDrawGizmosSelected()
     {
@@ -149,7 +149,7 @@ public class EnemyAI : MonoBehaviour
         knockDuration = KnockDuration;
         hitTimeKnockback = Time.time;
         OnKnock = true;
-       // mustpatrol = false;
+        mustpatrol = false;
         Vector2 direction = (transform.position - Player.transform.position).normalized;
         rb.AddForce(direction * strength, ForceMode2D.Impulse);
     }
@@ -161,5 +161,12 @@ public class EnemyAI : MonoBehaviour
         OnFreeze = true;
         mustpatrol = false;
         GetComponent<EnemyStat>().staggered = true;
+    }
+    public void FreeFreeze(float duration)
+    {
+        hitTimeFreeze = Time.time;
+        FreezeDuration = duration;
+        OnFreeze = true;
+        mustpatrol = false;
     }
 }
