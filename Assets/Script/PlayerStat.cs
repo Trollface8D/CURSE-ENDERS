@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class PlayerStat : MonoBehaviour
 {
+
     public int maxHealth1 = 100;
     public static int ultGate = 0;
     public int currentHealth;
