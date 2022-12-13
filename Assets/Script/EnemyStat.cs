@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class EnemyStat : MonoBehaviour
 {
+    public HealthBarBehavior Healthbar;
+
     public GameObject EnemyObj;
 
     public bool staggered = false;
@@ -14,12 +16,14 @@ public class EnemyStat : MonoBehaviour
     void Start()
     {
         currentHealth = maxHealth;
+        Healthbar.SetHealth(currentHealth, maxHealth);
     }
 
     // Update is called once per frame
     public void TakeDamage(int damage)
     {
         currentHealth -= damage;
+        Healthbar.SetHealth(currentHealth, maxHealth);
         if(currentHealth <= 0)
         {
             Die();
