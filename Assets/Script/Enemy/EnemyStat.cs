@@ -10,13 +10,15 @@ public class EnemyStat : MonoBehaviour
 
     public int maxHealth = 100;
     public int currentHealth;
-    // Start is called before the first frame update
+
+     private EnemySpawning enemySpawning;
+
     void Start()
     {
         currentHealth = maxHealth;
     }
 
-    // Update is called once per frame
+    
     public void TakeDamage(int damage)
     {
         currentHealth -= damage;
@@ -27,7 +29,13 @@ public class EnemyStat : MonoBehaviour
     }
     void Die()
     {
-        Scorescript.scoreValue += 10;
         Object.Destroy(EnemyObj);
+        Scorescript.scoreValue += 10;
+        enemySpawning = FindObjectOftype<EnemySpawning>(Koblod);
+        enemySpawning.enemiesInRoom--;
+        if(enemySpawning.spawnTime <= 0 && enemySpawning.enemiesInRoom <= 0){
+            //make sure that all enemy are dead in the room
+            enemySpawning.spawnerDone = true;
+        }
     }
 }
