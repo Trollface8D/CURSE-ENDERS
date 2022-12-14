@@ -27,6 +27,7 @@ public class EnemyStat : MonoBehaviour
     }
     void Die()
     {
+        Scorescript.scoreValue += 10;
         Object.Destroy(EnemyObj);
     }
 }
