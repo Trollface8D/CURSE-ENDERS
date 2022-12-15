@@ -8,7 +8,11 @@ public class PlayerStat : MonoBehaviour
     public int maxHealth1 = 100;
     public static int ultGate = 0;
     public int currentHealth;
-    // Start is called before the first frame update
+
+    public Animator animator;
+    private bool playerded;
+
+
     void Start()
     {
         currentHealth = maxHealth1;
@@ -25,7 +29,9 @@ public class PlayerStat : MonoBehaviour
     }
     void Die()
     {
-        Application.LoadLevel(Application.loadedLevel);
-        Debug.Log("Restarted");
+        // Application.LoadLevel(Application.loadedLevel);
+        animator.SetBool("playerded",true);
+        // Debug.Log("Restarted");
     }
+    
 }

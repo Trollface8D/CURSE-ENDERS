@@ -21518,6 +21518,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 22d0703103c3c0f48b3c288185defde7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spawnPoints: []
+  enemies: []
+  minTimeBtwSpawns: 0
+  maxTimeBtwSpawns: 0
+  canspawn: 0
+  spawnTime: 0
+  enemiesInRoom: 0
+  spawnerDone: 0
+  spawnerDoneGameObject: {fileID: 0}
 --- !u!4 &1806405643
 Transform:
   m_ObjectHideFlags: 0
@@ -23687,6 +23696,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth1: 100
   currentHealth: 0
+  animator: {fileID: 1901054540}
 --- !u!1 &1901377859
 GameObject:
   m_ObjectHideFlags: 0
