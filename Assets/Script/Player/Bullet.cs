@@ -21,12 +21,12 @@ public class Bullet : MonoBehaviour
             if (enemy.GetComponent<EnemyStat>().staggered)
             {
                 enemy.TakeDamage(damage*10);
-                enemy.GetComponent<EnemyAI>().knockback(0.1f, 20f);
+                enemy.GetComponent<EnemyAI>().Knockback(0.1f, 20f);
             }
             else
             {
                 enemy.TakeDamage(damage);
-                enemy.GetComponent<EnemyAI>().knockback(0.3f, 4f);
+                enemy.GetComponent<EnemyAI>().Knockback(0.3f, 4f);
             }
             
         }

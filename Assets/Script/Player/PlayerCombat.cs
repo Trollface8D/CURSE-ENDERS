@@ -90,7 +90,7 @@ public class PlayerCombat : MonoBehaviour
         foreach(Collider2D enemy in hitEnemies)
         {
             enemy.GetComponent<EnemyStat>().TakeDamage(attackDamage);
-            enemy.GetComponent<EnemyAI>().knockback(0.1f, 20f);
+            enemy.GetComponent<EnemyAI>().Knockback(0.1f, 20f);
             enemy.GetComponent<EnemyAI>().Freeze(0.3f);
         }
     }
@@ -101,7 +101,7 @@ public class PlayerCombat : MonoBehaviour
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackpoint.position, attackRange, enemyLayers);
         foreach (Collider2D enemy in hitEnemies)
         {
-            enemy.GetComponent<EnemyAI>().knockback(0.1f, 40f);
+            enemy.GetComponent<EnemyAI>().Knockback(0.1f, 40f);
             enemy.GetComponent<EnemyAI>().Freeze(5f);
         }
     }

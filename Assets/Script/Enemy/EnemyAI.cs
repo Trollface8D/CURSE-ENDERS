@@ -144,13 +144,13 @@ public class EnemyAI : MonoBehaviour
         Gizmos.DrawWireCube(enemypos, new Vector2(20f, 2f));
     }
 
-    public void knockback(float KnockDuration, float strength)
+    public void Knockback(float KnockDuration, float strength)
     {
         knockDuration = KnockDuration;
         hitTimeKnockback = Time.time;
         OnKnock = true;
         mustpatrol = false;
-        Vector2 direction = (transform.position - Player.transform.position).normalized;
+        Vector2 direction = (new Vector2(transform.position.x-Player.transform.position.x, 0f)).normalized;
         rb.AddForce(direction * strength, ForceMode2D.Impulse);
     }
 
