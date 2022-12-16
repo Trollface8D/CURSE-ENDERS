@@ -27,7 +27,7 @@ public class EnemyAI : MonoBehaviour
     public LayerMask groundlayer;
     public LayerMask Playerlayer;
 
-    public Transform Player;
+    private Transform Player;
     public Transform Enemy;
 
     public float filprange = 0.3f;
@@ -37,6 +37,7 @@ public class EnemyAI : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Player = GameObject.Find("Player").transform;
         mustpatrol = true;
         walkSpeed = startspeed;
     }
@@ -59,7 +60,7 @@ public class EnemyAI : MonoBehaviour
         //AI follow player
         if (!OnFreeze)
         {
-            if (Mathf.Abs(Player.position.x - Enemy.position.x) < filprange)
+            if (Mathf.Abs(Player.position.x - transform.position.x) < filprange)
             {
 
             }
@@ -78,7 +79,7 @@ public class EnemyAI : MonoBehaviour
                 if (walkSpeed > 0f)
                 {
                     walkSpeed = chasespeed;
-                    if ((Player.position.x - Enemy.position.x) < 0)
+                    if ((Player.position.x - transform.position.x) < 0)
                     {
                         Flip();
                     }
@@ -87,7 +88,7 @@ public class EnemyAI : MonoBehaviour
                 else if (walkSpeed < 0f)
                 {
                     walkSpeed = -chasespeed;
-                    if ((Player.position.x - Enemy.position.x) > 0)
+                    if ((Player.position.x - transform.position.x) > 0)
                     {
                         Flip();
                     }
@@ -131,12 +132,12 @@ public class EnemyAI : MonoBehaviour
     }
     private bool IsPlayerinrange()
     {
-        return Physics2D.OverlapBox(new Vector2(Enemy.position.x, Enemy.position.y + 0.625f), new Vector2(20f, 2f), 0, Playerlayer);
+        return Physics2D.OverlapBox(new Vector2(transform.position.x, transform.position.y + 0.625f), new Vector2(20f, 2f), 0, Playerlayer);
     }
     private void OnDrawGizmosSelected()
     {
         Vector2 enemypos;
-        enemypos = new Vector2(Enemy.position.x, Enemy.position.y + 0.625f);
+        enemypos = new Vector2(transform.position.x, transform.position.y + 0.625f);
         if (enemypos == null)
         {
             return;

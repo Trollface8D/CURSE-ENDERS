@@ -150,7 +150,7 @@ BoxCollider2D:
   m_GameObject: {fileID: 4347338453302780605}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 6200000, guid: 15996ae7f82d2c64dafd1ef195c1c3c5, type: 2}
+  m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
@@ -192,7 +192,6 @@ MonoBehaviour:
   Playerlayer:
     serializedVersion: 2
     m_Bits: 512
-  Player: {fileID: 8980298192264132271, guid: 23e4b52a1780539439f2c339cc71382f, type: 3}
   Enemy: {fileID: 4347338453302780545}
   filprange: 0.3
 --- !u!114 &4347338453302780547
@@ -228,8 +227,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 512
   attackDamage: 10
-  attackRange: 0.2
-  attackRate: 2
+  attackRange: 0.5
+  attackRate: 0.5
 --- !u!114 &7868495629271909520
 MonoBehaviour:
   m_ObjectHideFlags: 0

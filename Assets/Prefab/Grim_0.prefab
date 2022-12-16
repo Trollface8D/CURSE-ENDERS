@@ -194,7 +194,7 @@ MonoBehaviour:
   Playerlayer:
     serializedVersion: 2
     m_Bits: 512
-  Player: {fileID: 0}
+  Player: {fileID: 8980298192264132271, guid: 23e4b52a1780539439f2c339cc71382f, type: 3}
   Enemy: {fileID: 5360593018488436499}
   filprange: 0.3
 --- !u!50 &5360593018488436497
@@ -213,7 +213,7 @@ Rigidbody2D:
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 15996ae7f82d2c64dafd1ef195c1c3c5, type: 2}
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 1
@@ -274,5 +274,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   laserPrefab: {fileID: 3622585551060332070, guid: 87de1aa33fedab84dae1e89e5f60f686,
     type: 3}
-  Player: {fileID: 0}
+  Player: {fileID: 8980298192264132271, guid: 23e4b52a1780539439f2c339cc71382f, type: 3}
   teleportTimer: 2

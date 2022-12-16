@@ -272,6 +272,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 7
   jumpingPower: 16
+  animator: {fileID: 0}
   rb: {fileID: 8980298192264132241}
   groundCheck: {fileID: 8980298191323628075}
   RightWallCheck: {fileID: 8980298191337053445}
@@ -299,6 +300,7 @@ MonoBehaviour:
   attackDamage: 25
   attackRange: 1
   attackRate: 2
+  fireRate: 2
   HardhitRate: 5
   ultTime: 5
   bulletPrefab: {fileID: 5818938496836224389, guid: 7e834482bab8cff4e83d972554691e6a,
@@ -316,6 +318,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth1: 100
+  currentHealth: 0
+  animator: {fileID: 0}
 --- !u!95 &8980298192264132268
 Animator:
   serializedVersion: 3
