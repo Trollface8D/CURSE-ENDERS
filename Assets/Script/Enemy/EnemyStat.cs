@@ -56,6 +56,6 @@ public class EnemyStat : MonoBehaviour
             Player.GetComponent<PlayerStat>().GrimGate+=dropGrim;
         }
         Object.Destroy(EnemyObj);
-        Scorescript.scoreValue -= DiedScore;
+        Scorescript.scoreValue += DiedScore;
     }
 }

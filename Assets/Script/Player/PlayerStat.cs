@@ -15,6 +15,9 @@ public class PlayerStat : MonoBehaviour
     public int KoboldGate = 0;
     public int SnailGate = 0;
     public int GrimGate = 0;
+
+    [SerializeField] private AudioSource playerdedsoundeffect;
+
     void Start()
     {
         currentHealth = maxHealth1;
@@ -32,6 +35,7 @@ public class PlayerStat : MonoBehaviour
     void Die()
     {
         // Application.LoadLevel(Application.loadedLevel);
+        playerdedsoundeffect.Play();
         animator.SetBool("playerded",true);
         // Debug.Log("Restarted");
     }
