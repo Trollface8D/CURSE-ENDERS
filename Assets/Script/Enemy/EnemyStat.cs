@@ -43,9 +43,18 @@ public class EnemyStat : MonoBehaviour
     void Die()
     {
         GameObject.Find("EnemySpawnerScript").GetComponent<EnemySpawner>().EnemyReduct(1);
-        Player.GetComponent<PlayerStat>().KoboldGate+=dropKobold;
-        Player.GetComponent<PlayerStat>().SnailGate+=dropSnail;
-        Player.GetComponent<PlayerStat>().GrimGate+=dropGrim;
+        if(Player.GetComponent<PlayerStat>().KoboldGate < 5)
+        {
+            Player.GetComponent<PlayerStat>().KoboldGate+=dropKobold;
+        }
+        if (Player.GetComponent<PlayerStat>().SnailGate < 5)
+        {
+            Player.GetComponent<PlayerStat>().SnailGate+=dropSnail;
+        }
+        if (Player.GetComponent<PlayerStat>().GrimGate < 5)
+        {
+            Player.GetComponent<PlayerStat>().GrimGate+=dropGrim;
+        }
         Object.Destroy(EnemyObj);
         Scorescript.scoreValue -= DiedScore;
     }
