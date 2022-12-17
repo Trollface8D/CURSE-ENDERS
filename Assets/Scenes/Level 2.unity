@@ -27702,7 +27702,7 @@ PrefabInstance:
     - target: {fileID: 5360593018488436500, guid: a7fdf5c814d1a0042b0cfac876972148,
         type: 3}
       propertyPath: invisbleTimer
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5360593018488436500, guid: a7fdf5c814d1a0042b0cfac876972148,
         type: 3}
