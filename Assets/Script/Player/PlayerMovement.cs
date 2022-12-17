@@ -9,9 +9,9 @@ public class PlayerMovement : MonoBehaviour
     public float jumpingPower = 16f;
     private bool isFacingRight = true;
     private bool doublejump = true;
+    private bool jumping = false;
 
     public Animator animator;
-    private bool jumping;
 
 
     [SerializeField] private Rigidbody2D rb;
@@ -24,15 +24,31 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
         //ignore colision for enemy
         Physics2D.IgnoreLayerCollision(9,10);
 
         horizontal = Input.GetAxisRaw("Horizontal");
 
-        if (IsGrounded())
+        animator.SetFloat("Speed", Mathf.Abs(horizontal * speed));
+        if (Mathf.Abs(rb.velocity.y) > 0)
         {
-            animator.SetBool("jumping",false);
+            animator.SetBool("jumping", true);
+        }
+        else
+        {
+            animator.SetBool("jumping", false);
+        }
+        if (IsGrounded() && jumping)
+        {
+            jumping = false;
             doublejump = true;
+
+        }
+
+        if (Input.GetButtonDown("Jump"))
+        {
+            jumping = true;
         }
 
         if (Input.GetButtonDown("Jump") && (IsGrounded()))
@@ -40,18 +56,17 @@ public class PlayerMovement : MonoBehaviour
             rb.velocity = new Vector2(rb.velocity.x, jumpingPower);
         }
 
+
         //mutiple jump
-        else if(Input.GetButtonDown("Jump") && (doublejump)) //double jump : remove "Iswall()"
+        else if(Input.GetButtonDown("Jump") && (doublejump) && !IsGrounded()) //double jump : remove "Iswall()"
         {
             rb.velocity = new Vector2(rb.velocity.x, jumpingPower);
-            animator.SetBool("jumping",true);
             doublejump = false;
         }
 
         if (Input.GetButtonUp("Jump") && rb.velocity.y > 0f)
         {
             rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * 0.5f);
-            animator.SetBool("jumping",true);
         }
 
         filp();
