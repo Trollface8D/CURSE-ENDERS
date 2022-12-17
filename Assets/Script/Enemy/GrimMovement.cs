@@ -11,6 +11,8 @@ public class GrimMovement : MonoBehaviour
     private float nextTeleport = 0f;
     private bool readytoshoot = false;
 
+    [SerializeField] private AudioSource lasersoundeff;
+
     private void Start()
     {
         Player = GameObject.Find("Player").transform;
@@ -40,6 +42,7 @@ public class GrimMovement : MonoBehaviour
     }
     void LaserShoot()
     {
+        lasersoundeff.Play();
         Instantiate(laserPrefab, new Vector2(Player.position.x, Player.position.y-0.5f), Player.rotation);
     }
 }

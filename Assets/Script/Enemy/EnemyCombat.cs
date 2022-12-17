@@ -13,6 +13,7 @@ public class EnemyCombat : MonoBehaviour
     public float attackRate = 1f;
     private float nextAttackTime = 0f;
 
+    [SerializeField] private AudioSource attacksoundeff;
 
     // Update is called once per frame
     void Update()
@@ -38,6 +39,7 @@ public class EnemyCombat : MonoBehaviour
     }
     void AttackPlayer() 
     {
+        attacksoundeff.Play();
         Collider2D[] hitPlayer = Physics2D.OverlapCircleAll(attackpoint.position, attackRange, playerLayer);
         foreach (Collider2D player in hitPlayer)
         {
