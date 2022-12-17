@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class EnemyStat : MonoBehaviour
 {
+    public HealthBarBehavior Healthbar;
+
     public GameObject EnemyObj;
 
     public bool staggered = false;
@@ -11,31 +13,28 @@ public class EnemyStat : MonoBehaviour
     public int maxHealth = 100;
     public int currentHealth;
 
-     private EnemySpawning enemySpawning;
+    public int DiedScore=10;
 
     void Start()
     {
         currentHealth = maxHealth;
+        Healthbar.SetHealth(currentHealth, maxHealth);
     }
 
     
     public void TakeDamage(int damage)
     {
         currentHealth -= damage;
-        if(currentHealth <= 0)
+        Healthbar.SetHealth(currentHealth, maxHealth);
+        if (currentHealth <= 0)
         {
             Die();
         }
     }
     void Die()
     {
+        GameObject.Find("EnemySpawnerScript").GetComponent<EnemySpawner>().EnemyReduct(1);
         Object.Destroy(EnemyObj);
-        Scorescript.scoreValue += 10;
-        // enemySpawning = FindObjectOftype<EnemySpawning>();
-        // enemySpawning.enemiesInRoom--;
-        // if(enemySpawning.spawnTime <= 0 && enemySpawning.enemiesInRoom <= 0){
-        //     //make sure that all enemy are dead in the room
-        //     enemySpawning.spawnerDone = true;
-        // }
+        Scorescript.scoreValue -= DiedScore;
     }
 }

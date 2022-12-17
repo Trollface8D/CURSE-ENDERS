@@ -11,6 +11,10 @@ public class GrimMovement : MonoBehaviour
     private float nextTeleport = 0f;
     private bool readytoshoot = false;
 
+    private void Start()
+    {
+        Player = GameObject.Find("Player").transform;
+    }
     void Update()
     {
         nextTeleport += Time.deltaTime;
