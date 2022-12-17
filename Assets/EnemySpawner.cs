@@ -28,7 +28,7 @@ public class EnemySpawner : MonoBehaviour
         if (currentWaveValue <= 0 && EnemySpawned<=0)
         {
             currentspawnCooldown = 0f;
-            currentspawnCooldown = -3f;
+            currentspawnCooldown = -3f;//Delay 5 second for next wave
             Wave += 1;
             currentWaveValue = 10*Wave;
         }
