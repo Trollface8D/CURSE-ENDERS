@@ -28,6 +28,9 @@ public class PlayerCombat : MonoBehaviour
 
     public GameObject bulletPrefab;
 
+    [SerializeField] private AudioSource attacksoundeffect;
+    [SerializeField] private AudioSource throwsoundeffect;
+
     // Update is called once per frame
     void Update()
     {
@@ -81,11 +84,13 @@ public class PlayerCombat : MonoBehaviour
 
     void Shoot()
     {
+        throwsoundeffect.Play();
         Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
     }
     void Attack()
     {
         animator.SetBool("attack",true);
+        attacksoundeffect.Play();
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackpoint.position, attackRange, enemyLayers);
         foreach(Collider2D enemy in hitEnemies)
         {
