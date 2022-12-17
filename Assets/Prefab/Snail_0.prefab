@@ -221,6 +221,7 @@ MonoBehaviour:
   bulletPrefab: {fileID: 7302529950083210893, guid: 564adb452ea6a4a48b78b7b12e436fb1,
     type: 3}
   firePoint: {fileID: 9040256412934992627}
+  animator: {fileID: 9040256411548239582}
   snailshootsoundeff: {fileID: 367216845044200062}
 --- !u!82 &367216845044200062
 AudioSource:

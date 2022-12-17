@@ -7,6 +7,8 @@ public class EnemyShooting : MonoBehaviour
     public GameObject bulletPrefab;
     public Transform firePoint;
 
+    public Animator animator;
+
     private float ShootRate = 1f;
     private float nextShootTime = 0f;
 
@@ -16,15 +18,18 @@ public class EnemyShooting : MonoBehaviour
     {
         if (GetComponent<EnemyAI>().onChase)
         {
+            animator.SetBool("Shoot", false);
             nextShootTime += Time.deltaTime;
             if (nextShootTime >= ShootRate && !GetComponent<EnemyStat>().staggered)
             {
+                animator.SetBool("Shoot",true);
                 EnemyShoot();
                 nextShootTime = 0f;
             }
         }
         else
         {
+            animator.SetBool("Shoot", false);
             nextShootTime = 0f;
         }
     }

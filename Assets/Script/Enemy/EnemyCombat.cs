@@ -44,7 +44,6 @@ public class EnemyCombat : MonoBehaviour
         foreach (Collider2D player in hitPlayer)
         {
             player.GetComponent<PlayerStat>().TakeDamage1(attackDamage);
-            //Debug.Log("Hit :" + enemy.GetComponent<EnemyStat>().name + " " + enemy.GetComponent<EnemyStat>().currentHealth);
         }
     }
     private void OnDrawGizmosSelected()
