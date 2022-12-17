@@ -7,15 +7,12 @@ public class GrimMovement : MonoBehaviour
     public GameObject laserPrefab;
     public Transform Player;
     [SerializeField]
-    private float teleportTimer=3f;
+    private float appearTimer = 4f;
     [SerializeField]
-    private float invisibleTimer = 1f;
-    [SerializeField]
-    private float appearTimer = 2f;
+    private float invisbleTimer = 2f;
 
-    private float nextTeleport = 0f;
-    private float nextInvisible = 0f;
     private float nextAppear = 0f;
+    private float nextInvisble = 0f;
     private bool readytoshoot = false;
 
     public Animator animator;
@@ -27,9 +24,8 @@ public class GrimMovement : MonoBehaviour
     }
     void Update()
     {
-        nextTeleport += Time.deltaTime;
-        nextAppear += Time.deltaTime;
-        if (nextAppear >= appearTimer)
+        nextInvisble += Time.deltaTime;
+        if (nextInvisble >= invisbleTimer)
         {
             if (animator.GetBool("invisble"))
             {
@@ -37,16 +33,16 @@ public class GrimMovement : MonoBehaviour
             }
             animator.SetBool("invisble", false);
             GetComponent<Collider2D>().enabled = true;
-            nextInvisible += Time.deltaTime;
-            if (nextInvisible >= invisibleTimer)
+            nextAppear += Time.deltaTime;
+            if (nextAppear >= appearTimer)
             {
                 if (!readytoshoot)
                 {
                     readytoshoot = true;
                 }
                 animator.SetBool("invisble", true);
+                nextInvisble = 0f;
                 nextAppear = 0f;
-                nextInvisible = 0f;
                 GetComponent<Collider2D>().enabled = false;
             }
         }

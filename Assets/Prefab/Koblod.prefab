@@ -46,6 +46,7 @@ GameObject:
   - component: {fileID: 4347338453302780547}
   - component: {fileID: 4347338453302780548}
   - component: {fileID: 4435445258162512221}
+  - component: {fileID: 2768733469416740125}
   m_Layer: 10
   m_Name: Koblod
   m_TagString: Untagged
@@ -229,12 +230,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attackpoint: {fileID: 4347338453492477295}
+  triggerAttackpoint: {fileID: 4347338453492477295}
   playerLayer:
     serializedVersion: 2
     m_Bits: 512
-  attackDamage: 10
+  attackDamage: 15
   attackRange: 0.5
   attackRate: 0.5
+  animator: {fileID: 2768733469416740125}
   attacksoundeff: {fileID: 4435445258162512221}
 --- !u!82 &4435445258162512221
 AudioSource:
@@ -332,6 +335,25 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!95 &2768733469416740125
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4347338453302780605}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &4347338453492477294
 GameObject:
   m_ObjectHideFlags: 0

@@ -11061,6 +11061,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 8403440394919060336, guid: 5e75d88343900df479839ad4e0eb13a6,
         type: 3}
+      propertyPath: enemies.Array.data[3].cost
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8403440394919060336, guid: 5e75d88343900df479839ad4e0eb13a6,
+        type: 3}
       propertyPath: spawnLocation.Array.data[0]
       value: 
       objectReference: {fileID: 158706161}
@@ -23452,6 +23457,8 @@ MonoBehaviour:
   KoboldGate: 0
   SnailGate: 0
   GrimGate: 0
+  PlantaeGate: 0
+  playerdedsoundeffect: {fileID: 0}
 --- !u!82 &1901054548
 AudioSource:
   m_ObjectHideFlags: 0

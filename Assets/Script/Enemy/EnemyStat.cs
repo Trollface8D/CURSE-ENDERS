@@ -14,6 +14,7 @@ public class EnemyStat : MonoBehaviour
 
     public int dropKobold = 0;
     public int dropSnail = 0;
+    public int dropPlantae = 0;
     public int dropGrim = 0;
 
 
@@ -51,9 +52,13 @@ public class EnemyStat : MonoBehaviour
         {
             Player.GetComponent<PlayerStat>().SnailGate+=dropSnail;
         }
-        if (Player.GetComponent<PlayerStat>().GrimGate < 5)
+        if (Player.GetComponent<PlayerStat>().GrimGate < 2)
         {
             Player.GetComponent<PlayerStat>().GrimGate+=dropGrim;
+        }
+        if (Player.GetComponent<PlayerStat>().PlantaeGate < 5)
+        {
+            Player.GetComponent<PlayerStat>().PlantaeGate += dropPlantae;
         }
         Object.Destroy(EnemyObj);
         Scorescript.scoreValue += DiedScore;

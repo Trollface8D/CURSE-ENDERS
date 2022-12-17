@@ -5,6 +5,7 @@ using UnityEngine;
 public class EnemyCombat : MonoBehaviour
 {
     public Transform attackpoint;
+    public Transform triggerAttackpoint;
     public LayerMask playerLayer;
 
     public int attackDamage = 10;
@@ -13,27 +14,29 @@ public class EnemyCombat : MonoBehaviour
     public float attackRate = 1f;
     private float nextAttackTime = 0f;
 
+    public Animator animator;
+
     [SerializeField] private AudioSource attacksoundeff;
 
     // Update is called once per frame
     void Update()
     {
-        if (Physics2D.OverlapCircle(attackpoint.position, attackRange, playerLayer) && !GetComponent<EnemyStat>().staggered)
+        if (Physics2D.OverlapCircle(triggerAttackpoint.position, attackRange, playerLayer) && !GetComponent<EnemyStat>().staggered)
         {
+            animator.SetBool("Attack", true);
             Debug.Log("Enemy Charging");
             GetComponent<EnemyAI>().FreeFreeze(attackRate);
             nextAttackTime += Time.deltaTime;
             if (nextAttackTime >= attackRate && !GetComponent<EnemyStat>().staggered)
             {
                 Debug.Log("Enemy Attack Sucesful");
-                //GetComponent<EnemyAI>().knockback(0.6f, 7f);//temporary after hit action
                 AttackPlayer();
                 nextAttackTime = 0f;
-                //nextAttackTime = Time.time + 1f / attackRate;
             }
         }
         else
         {
+            animator.SetBool("Attack", false);
             nextAttackTime = 0f;
         }
     }

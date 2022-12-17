@@ -15,6 +15,7 @@ public class PlayerStat : MonoBehaviour
     public int KoboldGate = 0;
     public int SnailGate = 0;
     public int GrimGate = 0;
+    public int PlantaeGate = 0;
 
     [SerializeField] private AudioSource playerdedsoundeffect;
 

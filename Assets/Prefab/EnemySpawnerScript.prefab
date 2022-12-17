@@ -52,7 +52,10 @@ MonoBehaviour:
     cost: 3
   - enemyPrefab: {fileID: 5360593018488436492, guid: a7fdf5c814d1a0042b0cfac876972148,
       type: 3}
-    cost: 15
+    cost: 20
+  - enemyPrefab: {fileID: 3616262398484147113, guid: 25b0c8009552e1540a2227de76d82744,
+      type: 3}
+    cost: 3
   spawnLocation:
   - {fileID: 0}
   - {fileID: 0}
