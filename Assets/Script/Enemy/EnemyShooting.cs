@@ -9,7 +9,9 @@ public class EnemyShooting : MonoBehaviour
 
     private float ShootRate = 1f;
     private float nextShootTime = 0f;
-    // Update is called once per frame
+
+    [SerializeField] private AudioSource snailshootsoundeff;
+    
     void Update()
     {
         if (GetComponent<EnemyAI>().onChase)
@@ -27,7 +29,8 @@ public class EnemyShooting : MonoBehaviour
         }
     }
     void EnemyShoot()
-    {
+    {   
+        snailshootsoundeff.Play();
         Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
     }
 }

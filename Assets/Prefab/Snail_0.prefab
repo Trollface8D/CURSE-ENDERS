@@ -221,6 +221,7 @@ MonoBehaviour:
   bulletPrefab: {fileID: 7302529950083210893, guid: 564adb452ea6a4a48b78b7b12e436fb1,
     type: 3}
   firePoint: {fileID: 9040256412934992627}
+  snailshootsoundeff: {fileID: 367216845044200062}
 --- !u!82 &367216845044200062
 AudioSource:
   m_ObjectHideFlags: 0
@@ -231,9 +232,9 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: f1481ad6025eb8d4a931bd3907fc56c9, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.8
   m_Pitch: 1
   Loop: 0
   Mute: 0
