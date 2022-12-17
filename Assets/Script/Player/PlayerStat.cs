@@ -12,7 +12,9 @@ public class PlayerStat : MonoBehaviour
     public Animator animator;
     private bool playerded;
 
-
+    public int KoboldGate = 0;
+    public int SnailGate = 0;
+    public int GrimGate = 0;
     void Start()
     {
         currentHealth = maxHealth1;

@@ -209,6 +209,9 @@ MonoBehaviour:
   Healthbar: {fileID: 4813710338033882649}
   EnemyObj: {fileID: 4347338453302780605}
   staggered: 0
+  dropKobold: 1
+  dropSnail: 0
+  dropGrim: 0
   maxHealth: 100
   currentHealth: 0
   DiedScore: 10
