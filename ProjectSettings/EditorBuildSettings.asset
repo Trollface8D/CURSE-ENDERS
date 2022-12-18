@@ -5,7 +5,19 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/KEN TESTING.unity
     guid: 2cda990e2423bbf4892e6590ba056729
+  - enabled: 1
+    path: Assets/Mick's stuff/Scenes/Startmenu.unity
+    guid: 86208a59cd6a69d4b88fc4eb33b53cb7
+  - enabled: 1
+    path: Assets/Scenes/Level 1.unity
+    guid: c6e37e38463aa1045bc745578e408586
+  - enabled: 1
+    path: Assets/Scenes/Level 2.unity
+    guid: 7b9a74d56b062cd4c9454d242df7a348
+  - enabled: 1
+    path: Assets/Mick's stuff/Scenes/GameOver.unity
+    guid: b882999ff6454524a908dbd2fefb0a31
   m_configObjects: {}

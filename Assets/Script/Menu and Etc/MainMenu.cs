@@ -31,6 +31,21 @@ public class MainMenu : MonoBehaviour
         SceneManager.LoadScene(index);
     }
 
+    public void PlayLV1again()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex -2);
+    }
+
+    public void PlayLV2again()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex -1);
+    }
+
+    public void ToMenu()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex -3);
+    }
+
     public void Quitgame()
     {
         Debug.Log("QUIT!");
