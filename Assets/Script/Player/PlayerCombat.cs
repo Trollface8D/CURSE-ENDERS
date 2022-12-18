@@ -16,7 +16,13 @@ public class PlayerCombat : MonoBehaviour
     public float HardBulletTime = 5f;
     private float nextHardBulletTime = 0f;
 
+    private bool GrimRage = false;
+    public int attackGrim = 50;
+    public float GrimRageTime = 15f;
+    private float nextGrimRageTime = 0f;
+
     public int attackDamage = 40;
+    private int currentDamage = 0;
     public float attackRange = 5f;
 
     public float attackRate = 3f;
@@ -34,8 +40,11 @@ public class PlayerCombat : MonoBehaviour
 
     [SerializeField] private AudioSource attacksoundeffect;
     [SerializeField] private AudioSource throwsoundeffect;
-     
 
+    private void Start()
+    {
+        currentDamage = attackDamage;
+    }
     // Update is called once per frame
     void Update()
     {
@@ -67,8 +76,25 @@ public class PlayerCombat : MonoBehaviour
         {
             animator.SetBool("attack",false);
         }
+
         //Shooting
-        if (Input.GetButtonDown("2") && GetComponent<PlayerStat>().SnailGate >= 5)
+        if (GrimRage)
+        {
+            if (Time.time >= nextFireTime)
+            {
+                if (Input.GetButtonDown("Fire2"))
+                {
+                    HardShoot();
+                    nextFireTime = Time.time + 1f / fireRate;
+                }
+            }
+            else
+            {
+                animator.SetBool("HardShoot", false);
+            }
+        }
+
+        else if (Input.GetButtonDown("2") && GetComponent<PlayerStat>().SnailGate >= 5)
         {
             HardBulletState = true;
             nextHardBulletTime = Time.time + HardBulletTime;
@@ -80,7 +106,7 @@ public class PlayerCombat : MonoBehaviour
             nextHardBulletTime = 0f;
         }
 
-        if (!HardBulletState)
+        if (!(HardBulletState))
         {
             if (Time.time >= nextFireTime)
             {
@@ -111,6 +137,7 @@ public class PlayerCombat : MonoBehaviour
             }
         }
 
+        //Plantae
         if(Input.GetButtonDown("3") && GetComponent<PlayerStat>().PlantaeGate >= 5)
         {
             if(GetComponent<PlayerStat>().currentHealth+50 > 100)
@@ -123,7 +150,26 @@ public class PlayerCombat : MonoBehaviour
             }
             GetComponent<PlayerStat>().PlantaeGate = 0;
         }
-  
+        if(Input.GetButtonDown("4") && GetComponent<PlayerStat>().GrimGate >= 2)
+        {
+            GrimRage = true;
+            nextGrimRageTime = Time.time + GrimRageTime;
+            GetComponent<PlayerStat>().GrimGate = 0;
+        }
+        else if(Time.time >= nextGrimRageTime && nextGrimRageTime != 0f)
+        {
+            GrimRage = false;
+            nextGrimRageTime = 0f;
+        }
+
+        if (GrimRage)
+        {
+            currentDamage = attackGrim;
+        }
+        else if (!GrimRage)
+        {
+            currentDamage = attackDamage;
+        }
     }
 
 
@@ -147,7 +193,7 @@ public class PlayerCombat : MonoBehaviour
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackpoint.position, attackRange, enemyLayers);
         foreach(Collider2D enemy in hitEnemies)
         {
-            enemy.GetComponent<EnemyStat>().TakeDamage(attackDamage);
+            enemy.GetComponent<EnemyStat>().TakeDamage(currentDamage);
             enemy.GetComponent<EnemyAI>().Knockback(0.1f, 20f);
             enemy.GetComponent<EnemyAI>().Freeze(0.3f);
         }
