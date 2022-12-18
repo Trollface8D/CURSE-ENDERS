@@ -11,7 +11,7 @@ public class EnemySpawner : MonoBehaviour
 
     public int EnemySpawned = 0;
 
-    private int Wave = 1;
+    public static int Wave = 1;
     public int WaveValue = 10;
     private int currentWaveValue;
 

@@ -273,7 +273,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 07f7b249391812945aa22df77cc937d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 7
+  speed: 6
   jumpingPower: 16
   animator: {fileID: 8980298192264132268}
   rb: {fileID: 8980298192264132241}
@@ -305,7 +305,6 @@ MonoBehaviour:
   attackRate: 2
   fireRate: 2
   HardhitRate: 5
-  ultTime: 5
   bulletPrefab: {fileID: 5818938496836224389, guid: 7e834482bab8cff4e83d972554691e6a,
     type: 3}
   attacksoundeffect: {fileID: 1679873239022424936}
@@ -324,6 +323,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth1: 100
   currentHealth: 0
+  playHealth: {fileID: 0}
   animator: {fileID: 8980298192264132268}
   KoboldGate: 0
   SnailGate: 0
