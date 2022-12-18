@@ -1220,6 +1220,11 @@ PrefabInstance:
       objectReference: {fileID: 624884749}
     - target: {fileID: 8980298192264132270, guid: 23e4b52a1780539439f2c339cc71382f,
         type: 3}
+      propertyPath: HardhitRate
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8980298192264132270, guid: 23e4b52a1780539439f2c339cc71382f,
+        type: 3}
       propertyPath: throwsoundeffect
       value: 
       objectReference: {fileID: 2113295452}
@@ -1549,6 +1554,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: EnemySpawnerScript
+      objectReference: {fileID: 0}
+    - target: {fileID: 8403440394919060337, guid: 5e75d88343900df479839ad4e0eb13a6,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8403440394919060339, guid: 5e75d88343900df479839ad4e0eb13a6,
         type: 3}

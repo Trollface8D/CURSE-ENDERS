@@ -22,10 +22,6 @@ public class PlayerCombat : MonoBehaviour
     public float HardhitRate = 10f;
     private float nextHardhitTime = 0f;
 
-    public float ultTime = 5f;
-
-    private bool attack;
-    private bool heavyattack;
 
     public GameObject bulletPrefab;
 
@@ -35,16 +31,6 @@ public class PlayerCombat : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //Ultimate (not done)
-        if(PlayerStat.ultGate == 100)
-        {
-            if (Input.GetButtonDown("ultimate"))
-            {
-                Debug.Log("ULT DEPLOY");
-                
-            }
-        }
-
         if (Time.time >= nextHardhitTime)
         {
             if (Input.GetButtonDown("LeftShift"))
@@ -55,6 +41,7 @@ public class PlayerCombat : MonoBehaviour
         }
         else if (Time.time <= nextHardhitTime)
         {
+            animator.SetBool("heavyattack", false);
             animator.SetBool("attack", false);
         }
 
@@ -70,7 +57,6 @@ public class PlayerCombat : MonoBehaviour
         else if(Time.time <= nextAttackTime)
         {
             animator.SetBool("attack",false);
-            animator.SetBool("heavyattack", false);
         }
         //Shooting
         if(Time.time >= nextFireTime)
