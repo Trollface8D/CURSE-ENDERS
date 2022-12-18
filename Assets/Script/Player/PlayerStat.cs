@@ -16,8 +16,8 @@ public class PlayerStat : MonoBehaviour
 
     public int KoboldGate = 0;
     public int SnailGate = 0;
-    public int GrimGate = 0;
     public int PlantaeGate = 0;
+    public int GrimGate = 0;
 
     [SerializeField] private AudioSource playerdedsoundeffect;
 
@@ -25,6 +25,10 @@ public class PlayerStat : MonoBehaviour
     {
         currentHealth = maxHealth1;
         playHealth.SetMaxHealth1(maxHealth1);
+    }
+    private void Update()
+    {
+        playHealth.SetHealth1(currentHealth);
     }
 
     // Update is called once per frame
@@ -36,7 +40,6 @@ public class PlayerStat : MonoBehaviour
             currentHealth = 0;
             Die();
         }
-        playHealth.SetHealth1(currentHealth);
     }
     
     void Die()
@@ -46,6 +49,8 @@ public class PlayerStat : MonoBehaviour
         {
             playerdedsoundeffect.Play();
         }
+        GetComponent<PlayerCombat>().enabled = false;
+        GetComponent<PlayerMovement>().enabled = false;
         animator.SetBool("playerded",true);
         SceneManager.LoadScene("GameOver");
     }

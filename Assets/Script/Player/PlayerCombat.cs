@@ -110,6 +110,19 @@ public class PlayerCombat : MonoBehaviour
                 animator.SetBool("HardShoot", false);
             }
         }
+
+        if(Input.GetButtonDown("3") && GetComponent<PlayerStat>().PlantaeGate >= 5)
+        {
+            if(GetComponent<PlayerStat>().currentHealth+50 > 100)
+            {
+                GetComponent<PlayerStat>().currentHealth = 100;
+            }
+            else if (GetComponent<PlayerStat>().currentHealth + 50 <= 100)
+            {
+                GetComponent<PlayerStat>().currentHealth += 50;
+            }
+            GetComponent<PlayerStat>().PlantaeGate = 0;
+        }
   
     }
 
