@@ -135,7 +135,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 20
-  damage: 50
+  damage: 40
   knockPower: 15
   rb: {fileID: 2531038893388315959}
 --- !u!95 &6625088833486655693

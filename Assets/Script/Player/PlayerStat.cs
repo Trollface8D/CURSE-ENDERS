@@ -10,6 +10,11 @@ public class PlayerStat : MonoBehaviour
     public int currentHealth;
 
     public PlayerHealthBar playHealth;
+    public SoulBar soulBar;
+    public SoulBar1 soulBar1;
+    public SoulBar2 soulBar2;
+    public SoulBar3 soulBar3;
+
 
     public Animator animator;
     private bool playerded;
@@ -25,10 +30,18 @@ public class PlayerStat : MonoBehaviour
     {
         currentHealth = maxHealth1;
         playHealth.SetMaxHealth1(maxHealth1);
+        soulBar.SetMax(3);
+        soulBar1.SetMax(5);
+        soulBar2.SetMax(5);
+        soulBar3.SetMax(2);
     }
     private void Update()
     {
         playHealth.SetHealth1(currentHealth);
+        soulBar.Setcurrent(KoboldGate);
+        soulBar1.Setcurrent(SnailGate);
+        soulBar2.Setcurrent(PlantaeGate);
+        soulBar3.Setcurrent(GrimGate);
     }
 
     // Update is called once per frame

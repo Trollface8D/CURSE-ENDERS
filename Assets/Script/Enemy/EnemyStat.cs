@@ -12,10 +12,10 @@ public class EnemyStat : MonoBehaviour
 
     public bool staggered = false;
 
-    public int dropKobold = 0;
-    public int dropSnail = 0;
-    public int dropPlantae = 0;
-    public int dropGrim = 0;
+    public int dropKobold = 0; //max 5
+    public int dropSnail = 0;//max 5
+    public int dropPlantae = 0;//max 5
+    public int dropGrim = 0;//max 2
 
 
     public int maxHealth = 100;
@@ -44,7 +44,7 @@ public class EnemyStat : MonoBehaviour
     void Die()
     {
         GameObject.Find("EnemySpawnerScript").GetComponent<EnemySpawner>().EnemyReduct(1);
-        if(Player.GetComponent<PlayerStat>().KoboldGate < 5)
+        if(Player.GetComponent<PlayerStat>().KoboldGate < 3)
         {
             Player.GetComponent<PlayerStat>().KoboldGate+=dropKobold;
         }
@@ -52,13 +52,13 @@ public class EnemyStat : MonoBehaviour
         {
             Player.GetComponent<PlayerStat>().SnailGate+=dropSnail;
         }
-        if (Player.GetComponent<PlayerStat>().GrimGate < 2)
-        {
-            Player.GetComponent<PlayerStat>().GrimGate+=dropGrim;
-        }
         if (Player.GetComponent<PlayerStat>().PlantaeGate < 5)
         {
             Player.GetComponent<PlayerStat>().PlantaeGate += dropPlantae;
+        }
+        if (Player.GetComponent<PlayerStat>().GrimGate < 2)
+        {
+            Player.GetComponent<PlayerStat>().GrimGate+=dropGrim;
         }
         Object.Destroy(EnemyObj);
         Scorescript.scoreValue += DiedScore;

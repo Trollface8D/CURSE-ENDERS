@@ -48,7 +48,7 @@ public class PlayerCombat : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Time.time >= nextHardhitTime && GetComponent<PlayerStat>().KoboldGate >=5) //Heavy Attack
+        if (Time.time >= nextHardhitTime && GetComponent<PlayerStat>().KoboldGate >=3) //Heavy Attack
         {
             if (Input.GetButtonDown("1"))
             {
