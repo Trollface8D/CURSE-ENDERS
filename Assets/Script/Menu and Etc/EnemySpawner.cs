@@ -17,7 +17,7 @@ public class EnemySpawner : MonoBehaviour
 
     private float spawnCooldown = 2f;
     private float currentspawnCooldown = 0f;
-    // Start is called before the first frame update
+    
     void Start()
     {
         currentWaveValue = WaveValue;
