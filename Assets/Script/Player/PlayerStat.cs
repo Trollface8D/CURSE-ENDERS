@@ -47,7 +47,6 @@ public class PlayerStat : MonoBehaviour
             playerdedsoundeffect.Play();
         }
         animator.SetBool("playerded",true);
-        // Debug.Log("Restarted");
         SceneManager.LoadScene("GameOver");
     }
     
