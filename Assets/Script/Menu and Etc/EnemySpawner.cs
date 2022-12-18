@@ -21,6 +21,8 @@ public class EnemySpawner : MonoBehaviour
     void Start()
     {
         currentWaveValue = WaveValue;
+        Wave = 1;
+        Scorescript.scoreValue = 0;
     }
     private void FixedUpdate()
     {

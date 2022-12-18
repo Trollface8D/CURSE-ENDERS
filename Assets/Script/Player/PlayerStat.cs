@@ -82,9 +82,6 @@ public class PlayerStat : MonoBehaviour
         GetComponent<PlayerMovement>().die = true;
         GetComponent<PlayerCombat>().enabled = false;
         animator.SetBool("playerded",true);
-        //Put these in change scene pls
-        EnemySpawner.Wave = 1;
-        Scorescript.scoreValue = 0;
     }
     
 }
