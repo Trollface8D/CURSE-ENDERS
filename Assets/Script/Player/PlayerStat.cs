@@ -35,7 +35,7 @@ public class PlayerStat : MonoBehaviour
         {
             Die();
         }
-        playHealth.SetMaxHealth1(maxHealth1);
+        playHealth.SetHealth1(currentHealth);
     }
     
     void Die()
