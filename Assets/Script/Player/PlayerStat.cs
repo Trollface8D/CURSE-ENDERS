@@ -33,6 +33,7 @@ public class PlayerStat : MonoBehaviour
         currentHealth -= damage;
         if (currentHealth <= 0)
         {
+            currentHealth = 0;
             Die();
         }
         playHealth.SetHealth1(currentHealth);
@@ -41,7 +42,10 @@ public class PlayerStat : MonoBehaviour
     void Die()
     {
         // Application.LoadLevel(Application.loadedLevel);
-        playerdedsoundeffect.Play();
+        if (!(animator.GetBool("playerded")))
+        {
+            playerdedsoundeffect.Play();
+        }
         animator.SetBool("playerded",true);
         // Debug.Log("Restarted");
     }

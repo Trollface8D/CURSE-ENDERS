@@ -100,6 +100,7 @@ public class EnemyAI : MonoBehaviour
         {
             mustpatrol = true;
             OnKnock = false;
+            GetComponent<EnemyStat>().staggered = false;
         }
         if (OnFreeze)
         {
@@ -151,6 +152,7 @@ public class EnemyAI : MonoBehaviour
         hitTimeKnockback = Time.time;
         OnKnock = true;
         mustpatrol = false;
+        GetComponent<EnemyStat>().staggered = true;
         Vector2 direction = (new Vector2(transform.position.x-Player.transform.position.x, 0f)).normalized;
         rb.AddForce(direction * strength, ForceMode2D.Impulse);
     }

@@ -29,7 +29,7 @@ public class GrimMovement : MonoBehaviour
         {
             if (animator.GetBool("invisble"))
             {
-                Teleport(Random.Range(-8.5f, 8.5f), -1.3f);
+                Teleport(Player.position.x+Random.Range(-5f, 5f), -1.3f);
             }
             animator.SetBool("invisble", false);
             GetComponent<Collider2D>().enabled = true;

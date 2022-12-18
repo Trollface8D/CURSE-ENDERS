@@ -271,7 +271,7 @@ MonoBehaviour:
     m_Bits: 512
   attackDamage: 10
   attackRange: 0.5
-  attackRate: 0.1
+  attackRate: 0.3
   animator: {fileID: 3616262398484147117}
   attacksoundeff: {fileID: 3616262398484147118}
 --- !u!50 &3616262398484147280

@@ -282,7 +282,7 @@ MonoBehaviour:
   laserPrefab: {fileID: 3622585551060332070, guid: 87de1aa33fedab84dae1e89e5f60f686,
     type: 3}
   Player: {fileID: 8980298192264132271, guid: 23e4b52a1780539439f2c339cc71382f, type: 3}
-  appearTimer: 4
+  appearTimer: 2
   invisbleTimer: 2
   animator: {fileID: 5360593018488436493}
   lasersoundeff: {fileID: -2195711240605513875}

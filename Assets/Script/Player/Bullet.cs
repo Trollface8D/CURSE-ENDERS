@@ -6,6 +6,7 @@ public class Bullet : MonoBehaviour
 {
     public float speed = 20f;
     public int damage = 2;
+    public float knockPower = 5f;
     public Rigidbody2D rb;
     // Start is called before the first frame update
     void Start()
@@ -18,18 +19,12 @@ public class Bullet : MonoBehaviour
         EnemyStat enemy = hitinfo.GetComponent<EnemyStat>();
         if(enemy != null)
         {
-            if (enemy.GetComponent<EnemyStat>().staggered)
-            {
-                enemy.TakeDamage(damage*10);
-                enemy.GetComponent<EnemyAI>().Knockback(0.1f, 20f);
-            }
-            else
-            {
-                enemy.TakeDamage(damage);
-                enemy.GetComponent<EnemyAI>().Knockback(0.3f, 4f);
-            }
-            
+            enemy.TakeDamage(damage);
+            enemy.GetComponent<EnemyAI>().Knockback(0.3f, knockPower);
         }
-        Destroy(gameObject);
+        if (!(hitinfo.gameObject.layer == 9))// 9 is Player layer
+        {
+            Destroy(gameObject);
+        }
     }
 }
