@@ -25,6 +25,7 @@ public class PlayerCombat : MonoBehaviour
     public float ultTime = 5f;
 
     private bool attack;
+    private bool heavyattack;
 
     public GameObject bulletPrefab;
 
@@ -69,6 +70,7 @@ public class PlayerCombat : MonoBehaviour
         else if(Time.time <= nextAttackTime)
         {
             animator.SetBool("attack",false);
+            animator.SetBool("heavyattack", false);
         }
         //Shooting
         if(Time.time >= nextFireTime)
@@ -102,7 +104,7 @@ public class PlayerCombat : MonoBehaviour
 
     void HardHit()
     {
-        animator.SetBool("attack", true);
+        animator.SetBool("heavyattack", true);
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackpoint.position, attackRange, enemyLayers);
         foreach (Collider2D enemy in hitEnemies)
         {
