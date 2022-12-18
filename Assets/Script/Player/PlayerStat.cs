@@ -58,6 +58,8 @@ public class PlayerStat : MonoBehaviour
     void Die()
     {
         // Application.LoadLevel(Application.loadedLevel);
+        EnemySpawner.Wave = 1;
+        Scorescript.scoreValue = 0;
         if (!(animator.GetBool("playerded")))
         {
             playerdedsoundeffect.Play();
