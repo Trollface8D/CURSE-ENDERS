@@ -67,11 +67,16 @@ public class PlayerCombat : MonoBehaviour
                 nextFireTime = Time.time + 1f / fireRate;
             }
         }
+        else
+        {
+            animator.SetBool("Shoot", false);
+        }
     }
 
 
     void Shoot()
     {
+        animator.SetBool("Shoot", true);
         throwsoundeffect.Play();
         Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
     }

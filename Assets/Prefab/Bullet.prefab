@@ -28,8 +28,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5818938496836224389}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -6.27, y: -1.78, z: -31.592133}
-  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_LocalPosition: {x: -6.27, y: -1.78, z: 0}
+  m_LocalScale: {x: 0.2, y: 0.2, z: 2}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -73,7 +73,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 215bed128849c37429e613f3cc950162, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 3314812b84f4d9341bcab625e0ab918b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -118,9 +118,9 @@ CircleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0.46445012, y: 0.5572045}
   serializedVersion: 2
-  m_Radius: 0.025
+  m_Radius: 2.169572
 --- !u!114 &6436010831674847499
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -135,4 +135,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 20
   damage: 2
+  knockPower: 10
   rb: {fileID: 747460981199383120}
