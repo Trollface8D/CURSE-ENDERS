@@ -9,6 +9,8 @@ public class PlayerStat : MonoBehaviour
     public static int ultGate = 0;
     public int currentHealth;
 
+    public PlayerHealthBar playHealth;
+
     public Animator animator;
     private bool playerded;
 
@@ -22,6 +24,7 @@ public class PlayerStat : MonoBehaviour
     void Start()
     {
         currentHealth = maxHealth1;
+        playHealth.SetMaxHealth1(maxHealth1);
     }
 
     // Update is called once per frame
@@ -32,7 +35,9 @@ public class PlayerStat : MonoBehaviour
         {
             Die();
         }
+        playHealth.SetMaxHealth1(maxHealth1);
     }
+    
     void Die()
     {
         // Application.LoadLevel(Application.loadedLevel);
