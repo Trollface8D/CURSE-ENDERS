@@ -11,6 +11,8 @@ public class PlayerMovement : MonoBehaviour
     private bool doublejump = true;
     private bool jumping = false;
 
+    [HideInInspector]
+    public bool die = false;
     public Animator animator;
 
 
@@ -18,13 +20,16 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private Transform groundCheck;
     [SerializeField] private Transform RightWallCheck;
     [SerializeField] private LayerMask groundLayer;
- 
 
+
+    private void Start()
+    {
+        die = false;
+    }
 
     // Update is called once per frame
     void Update()
     {
-        
         //ignore colision for enemy
         Physics2D.IgnoreLayerCollision(9,10);
 
@@ -90,7 +95,14 @@ public class PlayerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        rb.velocity = new Vector2(horizontal * speed, rb.velocity.y);
+        if (die)
+        {
+            rb.velocity = new Vector2(0f, 0f);
+        }
+        else if(!die)
+        {
+            rb.velocity = new Vector2(horizontal * speed, rb.velocity.y);
+        }
     }
 
     private void filp()

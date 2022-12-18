@@ -15,6 +15,8 @@ public class PlayerStat : MonoBehaviour
     public SoulBar2 soulBar2;
     public SoulBar3 soulBar3;
 
+    private float Deadtime = 3f;
+
 
     public Animator animator;
     private bool playerded;
@@ -42,6 +44,20 @@ public class PlayerStat : MonoBehaviour
         soulBar1.Setcurrent(SnailGate);
         soulBar2.Setcurrent(PlantaeGate);
         soulBar3.Setcurrent(GrimGate);
+        if (currentHealth <= 0)
+        {
+            currentHealth = 0;
+            Deadtime -= Time.deltaTime;
+            if(Deadtime <= 2.8f)
+            {
+                GetComponent<PlayerMovement>().enabled = false;
+            }
+            if (Deadtime <= 0)
+            {
+                Deadtime = 3f;
+                SceneManager.LoadScene("GameOver");
+            }
+        }
     }
 
     // Update is called once per frame
@@ -51,6 +67,7 @@ public class PlayerStat : MonoBehaviour
         if (currentHealth <= 0)
         {
             currentHealth = 0;
+            Deadtime -= Time.deltaTime;
             Die();
         }
     }
@@ -58,16 +75,16 @@ public class PlayerStat : MonoBehaviour
     void Die()
     {
         // Application.LoadLevel(Application.loadedLevel);
-        EnemySpawner.Wave = 1;
-        Scorescript.scoreValue = 0;
         if (!(animator.GetBool("playerded")))
         {
             playerdedsoundeffect.Play();
         }
+        GetComponent<PlayerMovement>().die = true;
         GetComponent<PlayerCombat>().enabled = false;
-        GetComponent<PlayerMovement>().enabled = false;
         animator.SetBool("playerded",true);
-        SceneManager.LoadScene("GameOver");
+        //Put these in change scene pls
+        EnemySpawner.Wave = 1;
+        Scorescript.scoreValue = 0;
     }
     
 }
