@@ -17,12 +17,12 @@ public class Bullet : MonoBehaviour
     void OnTriggerEnter2D(Collider2D hitinfo)
     {
         EnemyStat enemy = hitinfo.GetComponent<EnemyStat>();
-        if(enemy != null)
+        if (enemy != null)
         {
             enemy.TakeDamage(damage);
             enemy.GetComponent<EnemyAI>().Knockback(0.3f, knockPower);
         }
-        if (!(hitinfo.gameObject.layer == 9))// 9 is Player layer
+        if (!(hitinfo.gameObject.layer == 9 || hitinfo.gameObject.layer == 11))// 9 is Player layer 11 is enemy Bullet
         {
             Destroy(gameObject);
         }
