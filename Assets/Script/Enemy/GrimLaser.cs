@@ -9,7 +9,7 @@ public class GrimLaser : MonoBehaviour
     public float chargeTime = 1f;
     public float existTime = 2.3f;
     private float nextShootTime = 0f;
-
+    // Start is called before the first frame update
     void Update()
     {
         nextShootTime += Time.deltaTime;
