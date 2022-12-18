@@ -297,16 +297,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attackpoint: {fileID: 8980298191839900481}
   firePoint: {fileID: 8779394915314590887}
+  playerStat: {fileID: 0}
   enemyLayers:
     serializedVersion: 2
     m_Bits: 1024
   animator: {fileID: 8980298192264132268}
+  HardBulletTime: 7
+  attackGrim: 50
+  GrimRageTime: 15
   attackDamage: 25
   attackRange: 1
   attackRate: 2
   fireRate: 2
+  HardHitDamage: 90
   HardhitRate: 5
   bulletPrefab: {fileID: 5818938496836224389, guid: 7e834482bab8cff4e83d972554691e6a,
+    type: 3}
+  HardbulletPrefab: {fileID: 8772598659541226210, guid: c24e8169102901441a62b1eb0eba4861,
     type: 3}
   attacksoundeffect: {fileID: 1679873239022424936}
   throwsoundeffect: {fileID: 1679873239022424936}
@@ -328,8 +335,8 @@ MonoBehaviour:
   animator: {fileID: 8980298192264132268}
   KoboldGate: 0
   SnailGate: 0
-  GrimGate: 0
   PlantaeGate: 0
+  GrimGate: 0
   playerdedsoundeffect: {fileID: 7643957918330535271}
 --- !u!95 &8980298192264132268
 Animator:
