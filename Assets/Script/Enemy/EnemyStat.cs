@@ -43,6 +43,7 @@ public class EnemyStat : MonoBehaviour
     }
     void Die()
     {
+        Object.Destroy(EnemyObj);
         GameObject.Find("EnemySpawnerScript").GetComponent<EnemySpawner>().EnemyReduct(1);
         if(Player.GetComponent<PlayerStat>().KoboldGate < 3)
         {
@@ -60,7 +61,6 @@ public class EnemyStat : MonoBehaviour
         {
             Player.GetComponent<PlayerStat>().GrimGate+=dropGrim;
         }
-        Object.Destroy(EnemyObj);
         Scorescript.scoreValue += DiedScore;
     }
 }
