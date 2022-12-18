@@ -48,6 +48,7 @@ public class PlayerStat : MonoBehaviour
         }
         animator.SetBool("playerded",true);
         // Debug.Log("Restarted");
+        SceneManager.LoadScene("GameOver");
     }
     
 }

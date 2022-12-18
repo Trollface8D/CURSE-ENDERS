@@ -213,6 +213,7 @@ MonoBehaviour:
   staggered: 0
   dropKobold: 1
   dropSnail: 0
+  dropPlantae: 0
   dropGrim: 0
   maxHealth: 100
   currentHealth: 0
@@ -248,7 +249,8 @@ AudioSource:
   m_GameObject: {fileID: 4347338453302780605}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 24300002, guid: dbc39cf56f4f1a14498d2b8f6898f624,
+    type: 2}
   m_audioClip: {fileID: 8300000, guid: 914c5ac6abfc5054a968b295e1df4b57, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 0.5
